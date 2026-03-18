@@ -15,7 +15,7 @@ const About = () => (
     {/* Hero */}
     <section className="seraphyn-section seraphyn-gradient-bg">
       <div className="seraphyn-container text-center py-16">
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: [0.2, 0, 0, 1] }}>
+        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: [0.2, 0, 0, 1] as const }}>
           <h3 className="text-xs mb-4 text-muted-foreground">ABOUT US</h3>
           <h1 className="font-serif text-4xl md:text-6xl text-foreground">Built by Nurses, for Healthcare</h1>
           <p className="mt-6 text-muted-foreground max-w-[55ch] mx-auto leading-relaxed text-lg">

@@ -44,7 +44,7 @@ const Consulting = () => (
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.2, 0, 0, 1] }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.2, 0, 0, 1] as const }}
             className="rounded-3xl overflow-hidden"
             style={{ boxShadow: "var(--shadow-card)" }}
           >

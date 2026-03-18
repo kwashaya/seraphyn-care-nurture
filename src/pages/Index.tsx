@@ -99,7 +99,7 @@ const Index = () => (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3, ease: [0.2, 0, 0, 1] }}
+          transition={{ duration: 0.8, delay: 0.3, ease: [0.2, 0, 0, 1] as const }}
           className="mt-10 flex flex-col sm:flex-row gap-4 justify-center"
         >
           <Link

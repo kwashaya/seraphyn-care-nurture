@@ -12,7 +12,7 @@ const SectionHeading = ({ tag, title, description, center = true }: SectionHeadi
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-100px" }}
-    transition={{ duration: 0.6, ease: [0.2, 0, 0, 1] }}
+    transition={{ duration: 0.6, ease: [0.2, 0, 0, 1] as const }}
     className={`mb-16 ${center ? "text-center" : ""}`}
   >
     {tag && <h3 className="text-xs mb-4 text-muted-foreground">{tag}</h3>}
