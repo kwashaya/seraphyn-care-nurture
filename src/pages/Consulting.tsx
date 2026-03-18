@@ -25,7 +25,7 @@ const Consulting = () => (
     <section className="seraphyn-section">
       <div className="seraphyn-container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: [0.2, 0, 0, 1] }}>
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: [0.2, 0, 0, 1] as const }}>
             <h3 className="text-xs mb-4 text-muted-foreground">EXECUTIVE CONSULTING</h3>
             <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-foreground leading-[1.1]">
               Strategic Clarity for Healthcare Leaders
