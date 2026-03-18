@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import Staffing from "./pages/Staffing";
 import Consulting from "./pages/Consulting";
 import Assessment from "./pages/Assessment";
+import Book from "./pages/Book";
 import About from "./pages/About";
 import ForNurses from "./pages/ForNurses";
 import Contact from "./pages/Contact";
