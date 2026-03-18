@@ -21,8 +21,8 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 seraphyn-glass border-b border-border/50">
       <div className="seraphyn-container flex items-center justify-between h-20 px-6">
-        <Link to="/" className="font-serif text-2xl text-foreground tracking-tight">
-          Seraphyn Care
+        <Link to="/" className="flex items-center gap-2">
+          <img src={logo} alt="Seraphyn Care Solutions" className="h-12 w-auto" />
         </Link>
 
         {/* Desktop */}
