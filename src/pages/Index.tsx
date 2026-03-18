@@ -91,7 +91,7 @@ const Index = () => (
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.15, ease: [0.2, 0, 0, 1] }}
+          transition={{ duration: 0.8, delay: 0.15, ease: [0.2, 0, 0, 1] as const }}
           className="mt-6 text-lg md:text-xl text-primary-foreground/80 max-w-[55ch] mx-auto leading-relaxed"
         >
           Seraphyn Care integrates clinical intelligence with bespoke consulting to reduce agency reliance and restore organizational health.
