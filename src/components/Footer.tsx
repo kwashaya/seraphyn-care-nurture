@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
+import logo from "@/assets/seraphyn-logo.jpeg";
 
 const Footer = () => (
   <footer className="border-t border-border bg-card">
     <div className="seraphyn-container px-6 py-16">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
         <div className="md:col-span-1">
-          <span className="font-serif text-xl text-foreground">Seraphyn Care</span>
+          <img src={logo} alt="Seraphyn Care Solutions" className="h-10 w-auto" />
           <p className="mt-4 text-sm text-muted-foreground max-w-[30ch] leading-relaxed">
             Sustainable systems for the future of care.
           </p>
