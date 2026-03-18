@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import logo from "@/assets/seraphyn-logo.jpeg";
 
 const Footer = () => (
   <footer className="border-t border-border bg-card">
