@@ -5,7 +5,7 @@ import Layout from "@/components/Layout";
 import SectionHeading from "@/components/SectionHeading";
 import { ArrowRight, BookOpen, DollarSign, Shield, TrendingDown, BarChart3, CheckCircle, Quote, PieChart } from "lucide-react";
 import bookMockup from "@/assets/book-mockup.jpg";
-import authorPortrait from "@/assets/author-portrait.jpg";
+
 
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
