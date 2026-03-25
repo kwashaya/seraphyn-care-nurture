@@ -5,7 +5,7 @@ import Layout from "@/components/Layout";
 import SectionHeading from "@/components/SectionHeading";
 import { ArrowRight, BookOpen, DollarSign, Shield, TrendingDown, BarChart3, CheckCircle, Quote, PieChart } from "lucide-react";
 import bookMockup from "@/assets/book-mockup.jpg";
-import authorPortrait from "@/assets/author-portrait.jpg";
+
 
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
@@ -198,28 +198,30 @@ const Book = () => {
         </div>
       </section>
 
-      {/* About the Author */}
+      {/* Why This Book Exists */}
       <section className="seraphyn-section bg-card">
         <div className="seraphyn-container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <motion.div {...fadeUp}>
-              <img src={authorPortrait} alt="Kundayi Washaya, RN — Author and Healthcare Consultant" className="rounded-2xl w-full max-w-md mx-auto lg:mx-0" style={{ boxShadow: "var(--shadow-card-hover)" }} />
-            </motion.div>
-            <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.15 }}>
-              <h3 className="text-xs mb-4 text-muted-foreground">ABOUT THE AUTHOR</h3>
-              <h2 className="font-serif text-4xl text-foreground">Kundayi Washaya, RN</h2>
-              <p className="mt-2 text-accent font-medium text-sm">Nurse Leader · Healthcare Finance Strategist · Founder, Seraphyn Care</p>
-              <p className="mt-6 text-muted-foreground leading-relaxed">
-                Kundayi Washaya is a registered nurse turned healthcare financial strategist who has spent her career on both sides of the staffing equation—at the bedside and in the boardroom. She founded Seraphyn Care to bridge the gap between frontline nursing reality and executive financial decision-making.
-              </p>
-              <p className="mt-4 text-muted-foreground leading-relaxed">
-                Her consulting practice has helped health systems recover over $20M in preventable workforce costs. She advises CFOs and COOs on labor cost optimization, agency spend reduction, and retention-driven financial strategy. <em>The Million Dollar Nurse</em> distills these engagements into a framework any finance leader can implement.
-              </p>
-              <Link to="/consulting" className="mt-6 text-accent text-sm font-medium inline-flex items-center gap-2 hover:gap-3 transition-all">
-                Explore executive consulting services <ArrowRight size={16} />
-              </Link>
-            </motion.div>
+          <SectionHeading tag="THE ORIGIN" title="Why This Book Exists" description="Built from frontline healthcare experience and consulting insight—not theory." />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+            {[
+              { icon: Shield, title: "Nurse-Led Perspective", desc: "Written by a registered nurse who has lived the staffing crisis firsthand—understanding the human cost behind every turnover statistic and agency invoice." },
+              { icon: BarChart3, title: "Real-World Staffing Experience", desc: "Informed by years of direct experience across health systems of every size, from community hospitals to multi-facility academic networks managing thousands of beds." },
+              { icon: TrendingDown, title: "Data-Driven Strategies", desc: "Every framework in this book is grounded in measurable outcomes—ROI models, cost-per-FTE analysis, and margin recovery projections that CFOs can take straight to the board." },
+            ].map((item, i) => (
+              <motion.div key={i} {...fadeUp} transition={{ ...fadeUp.transition, delay: i * 0.1 }} className="seraphyn-card text-center">
+                <div className="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center mx-auto mb-5">
+                  <item.icon size={26} className="text-accent" strokeWidth={1.5} />
+                </div>
+                <h2 className="font-serif text-xl text-foreground">{item.title}</h2>
+                <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+              </motion.div>
+            ))}
           </div>
+          <motion.div {...fadeUp} className="mt-12 text-center">
+            <Link to="/consulting" className="text-accent text-sm font-medium inline-flex items-center gap-2 hover:gap-3 transition-all">
+              Explore executive consulting services <ArrowRight size={16} />
+            </Link>
+          </motion.div>
         </div>
       </section>
 
