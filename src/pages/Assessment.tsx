@@ -199,11 +199,11 @@ type Metrics = ReturnType<typeof computeMetrics>;
 
 const stepLabels = [
   "About You",
-  "Retention",
-  "Drivers",
-  "Financial",
-  "Stability",
-  "Report",
+  "Your Team",
+  "What's Happening",
+  "The Impact",
+  "Your Score",
+  "Your Report",
 ];
 
 /* ---------------- Reusable UI ---------------- */
@@ -397,7 +397,7 @@ const Assessment = () => {
               The Staffing Stability Assessment™
             </h1>
             <p className="mt-5 text-muted-foreground max-w-[55ch] mx-auto leading-relaxed">
-              A 6-step diagnostic that reveals your true cost of turnover, hidden financial leakage, and a customized strategy to recover lost revenue.
+              Answer a few simple questions about your nursing team. Estimates are perfectly fine — we'll calculate the rest and show you what it's costing you.
             </p>
           </div>
 
@@ -434,23 +434,23 @@ const Assessment = () => {
                 <div className="seraphyn-card space-y-6">
                   <div>
                     <h2 className="font-serif text-3xl text-foreground">
-                      Tell us about your organization
+                      First, tell us a little about you
                     </h2>
                     <p className="text-sm text-muted-foreground mt-2">
-                      Your data is confidential and used only to generate your report.
+                      We'll use this to personalize your report. Your information stays private.
                     </p>
                   </div>
                   <div className="grid sm:grid-cols-2 gap-5">
-                    <Field label="Organization Name">
-                      <TextInput value={form.orgName} onChange={(v) => update("orgName", v)} placeholder="Metro Health System" />
+                    <Field label="Where do you work?" hint="Your hospital, clinic, or facility name">
+                      <TextInput value={form.orgName} onChange={(v) => update("orgName", v)} placeholder="e.g. Metro Health System" />
                     </Field>
-                    <Field label="Your Role">
-                      <TextInput value={form.role} onChange={(v) => update("role", v)} placeholder="CNO, CFO, CHRO…" />
+                    <Field label="What's your job title?" hint="So we can tailor the report to you">
+                      <TextInput value={form.role} onChange={(v) => update("role", v)} placeholder="e.g. CNO, CFO, HR Director" />
                     </Field>
-                    <Field label="Full Name">
-                      <TextInput value={form.contactName} onChange={(v) => update("contactName", v)} placeholder="Jane Smith, RN" />
+                    <Field label="Your name">
+                      <TextInput value={form.contactName} onChange={(v) => update("contactName", v)} placeholder="Jane Smith" />
                     </Field>
-                    <Field label="Work Email">
+                    <Field label="Your work email" hint="We'll send your report here">
                       <TextInput type="email" value={form.email} onChange={(v) => update("email", v)} placeholder="jane@hospital.org" />
                     </Field>
                   </div>
@@ -464,29 +464,41 @@ const Assessment = () => {
                     <div className="flex items-start gap-3">
                       <Users className="text-accent mt-1" size={22} />
                       <div>
-                        <h2 className="font-serif text-3xl text-foreground">Your current staffing reality</h2>
-                        <p className="text-sm text-muted-foreground mt-1">Section 1 — Retention, turnover & true cost</p>
+                        <h2 className="font-serif text-3xl text-foreground">Your nursing team — by the numbers</h2>
+                        <p className="text-sm text-muted-foreground mt-2 max-w-[60ch]">
+                          Think back over the past 12 months. Round numbers are fine — we just need a clear picture of how many nurses came, went, and stayed.
+                        </p>
                       </div>
                     </div>
 
                     <div className="grid sm:grid-cols-3 gap-4">
-                      <Field label="Starting Nurses (12 mo ago)">
-                        <NumInput value={form.startingNurses} onChange={(v) => update("startingNurses", v)} placeholder="220" />
+                      <Field label="How many nurses did you have a year ago?" hint="Your headcount 12 months back">
+                        <NumInput value={form.startingNurses} onChange={(v) => update("startingNurses", v)} placeholder="e.g. 220" />
                       </Field>
-                      <Field label="Ending Nurses (today)">
-                        <NumInput value={form.endingNurses} onChange={(v) => update("endingNurses", v)} placeholder="210" />
+                      <Field label="How many nurses do you have today?" hint="Current total nursing staff">
+                        <NumInput value={form.endingNurses} onChange={(v) => update("endingNurses", v)} placeholder="e.g. 210" />
                       </Field>
-                      <Field label="New Hires (12 mo)">
-                        <NumInput value={form.newHires} onChange={(v) => update("newHires", v)} placeholder="55" />
+                      <Field label="How many new nurses did you hire this year?" hint="Total hires over the last 12 months">
+                        <NumInput value={form.newHires} onChange={(v) => update("newHires", v)} placeholder="e.g. 55" />
                       </Field>
-                      <Field label="Nurses Who Left">
-                        <NumInput value={form.nursesLeft} onChange={(v) => update("nursesLeft", v)} placeholder="65" />
+                      <Field label="How many nurses left this year?" hint="Resignations, terminations, retirements">
+                        <NumInput value={form.nursesLeft} onChange={(v) => update("nursesLeft", v)} placeholder="e.g. 65" />
                       </Field>
-                      <Field label="Total Nurses (current)">
-                        <NumInput value={form.totalNurses} onChange={(v) => update("totalNurses", v)} placeholder="210" />
+                      <Field label="What's your average nurse headcount?" hint="A rough average across the year is fine">
+                        <NumInput value={form.totalNurses} onChange={(v) => update("totalNurses", v)} placeholder="e.g. 215" />
                       </Field>
-                      <Field label="Cost per Turnover" hint="Industry: $40K–$80K">
-                        <NumInput value={form.costPerNurse} onChange={(v) => update("costPerNurse", v)} placeholder="60000" prefix="$" />
+                      <Field label="What does it cost to replace one nurse?" hint="Industry estimate: $40K–$80K per nurse. Pick the closest.">
+                        <select
+                          value={form.costPerNurse}
+                          onChange={(e) => update("costPerNurse", e.target.value)}
+                          className="w-full px-4 py-3 rounded-lg bg-muted border border-transparent text-foreground text-sm focus:outline-none focus:border-accent/60"
+                        >
+                          <option value="40000">$40,000 — Conservative</option>
+                          <option value="55000">$55,000 — Moderate</option>
+                          <option value="60000">$60,000 — Average (most common)</option>
+                          <option value="70000">$70,000 — Above average</option>
+                          <option value="80000">$80,000 — High (specialty/ICU)</option>
+                        </select>
                       </Field>
                     </div>
 
@@ -508,13 +520,13 @@ const Assessment = () => {
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-4">
-                    <InsightBox tone="alert" title="Insight">
+                    <InsightBox tone="alert" title="What this means">
                       {metrics.retentionRate < 85
-                        ? "Your retention is below 85% — you're likely stuck in a constant hiring cycle. Each cycle compounds cost."
-                        : "Strong retention base. Protect it — the next 12 months determine whether it holds."}
+                        ? "When fewer than 85 out of 100 nurses stay, you're stuck in a constant hiring cycle — and every cycle costs more than the last."
+                        : "You're holding onto your nurses well. The next 12 months will determine whether that lasts."}
                     </InsightBox>
-                    <InsightBox tone="consult" title="Consultant Note">
-                      True cost of turnover is typically 1.5–2× the calculated figure once you include lost productivity, errors, and overtime backfill.
+                    <InsightBox tone="consult" title="Worth knowing">
+                      The real cost of losing a nurse is usually 1.5–2× higher than the obvious number — once you add lost productivity, errors, and overtime to cover the gap.
                     </InsightBox>
                   </div>
                 </div>
@@ -527,26 +539,28 @@ const Assessment = () => {
                     <div className="flex items-start gap-3">
                       <Activity className="text-accent mt-1" size={22} />
                       <div>
-                        <h2 className="font-serif text-3xl text-foreground">What's driving your turnover</h2>
-                        <p className="text-sm text-muted-foreground mt-1">Section 2 — Vacancy, overtime & agency reliance</p>
+                        <h2 className="font-serif text-3xl text-foreground">What's stretching your team thin?</h2>
+                        <p className="text-sm text-muted-foreground mt-2 max-w-[60ch]">
+                          A few questions about open roles, overtime, and agency staff. These are the silent costs that quietly drain your budget every month.
+                        </p>
                       </div>
                     </div>
 
                     <div className="grid sm:grid-cols-2 gap-4">
-                      <Field label="Open Positions">
-                        <NumInput value={form.openPositions} onChange={(v) => update("openPositions", v)} placeholder="32" />
+                      <Field label="How many nursing positions are unfilled right now?" hint="Open roles you're actively trying to fill">
+                        <NumInput value={form.openPositions} onChange={(v) => update("openPositions", v)} placeholder="e.g. 32" />
                       </Field>
-                      <Field label="Total Positions">
-                        <NumInput value={form.totalPositions} onChange={(v) => update("totalPositions", v)} placeholder="240" />
+                      <Field label="How many nursing positions do you have in total?" hint="All budgeted RN positions, filled or not">
+                        <NumInput value={form.totalPositions} onChange={(v) => update("totalPositions", v)} placeholder="e.g. 240" />
                       </Field>
-                      <Field label="Overtime Hours (annual)">
-                        <NumInput value={form.overtimeHours} onChange={(v) => update("overtimeHours", v)} placeholder="48000" />
+                      <Field label="How many overtime hours did your nurses work this year?" hint="A yearly estimate is fine. Tip: monthly OT hours × 12">
+                        <NumInput value={form.overtimeHours} onChange={(v) => update("overtimeHours", v)} placeholder="e.g. 48,000" />
                       </Field>
-                      <Field label="Total Hours (annual)">
-                        <NumInput value={form.totalHours} onChange={(v) => update("totalHours", v)} placeholder="420000" />
+                      <Field label="How many total hours did your nurses work this year?" hint="Roughly 2,000 hrs per full-time nurse × your headcount">
+                        <NumInput value={form.totalHours} onChange={(v) => update("totalHours", v)} placeholder="e.g. 420,000" />
                       </Field>
-                      <Field label="Monthly Agency Spend">
-                        <NumInput value={form.monthlyAgencySpend} onChange={(v) => update("monthlyAgencySpend", v)} placeholder="180000" prefix="$" />
+                      <Field label="How much do you spend on agency / travel nurses each month?" hint="Your average monthly invoice. Enter 0 if none.">
+                        <NumInput value={form.monthlyAgencySpend} onChange={(v) => update("monthlyAgencySpend", v)} placeholder="e.g. 180,000" prefix="$" />
                       </Field>
                       <div className="bg-muted/60 rounded-xl p-4">
                         <div className="text-[10px] uppercase tracking-[0.15em] text-muted-foreground font-medium">Annual Agency Spend</div>
@@ -567,13 +581,14 @@ const Assessment = () => {
 
                     {/* Pattern recognition */}
                     <div className="pt-4 border-t border-border">
-                      <h3 className="text-xs mb-3 text-muted-foreground">Pattern Recognition — Check all that apply</h3>
+                      <h3 className="text-xs mb-2 text-muted-foreground">Which of these sound familiar?</h3>
+                      <p className="text-xs text-muted-foreground/80 mb-3">Tap any that match what you're seeing in your organization. Skip if none apply.</p>
                       <div className="grid sm:grid-cols-2 gap-2">
                         {[
-                          "High turnover + overtime",
-                          "High vacancy + agency use",
-                          "Slow hiring + burnout",
-                          "Rising costs without improvement",
+                          "Nurses leaving + overtime keeps climbing",
+                          "Lots of open roles + heavy agency use",
+                          "Hiring takes forever + the team feels burned out",
+                          "Costs going up but nothing is improving",
                         ].map((p) => {
                           const active = form.patterns.includes(p);
                           return (
@@ -604,11 +619,8 @@ const Assessment = () => {
                     </div>
                   </div>
 
-                  <InsightBox tone="alert" title="System Insight">
-                    When vacancy, overtime, and agency usage rise together, they create a feedback loop:
-                    <span className="block mt-2 font-medium text-foreground">
-                      Vacancies → Overtime → Burnout → Turnover → More Vacancies
-                    </span>
+                  <InsightBox tone="alert" title="The cycle to watch for">
+                    These problems feed each other. Empty roles → more overtime → tired nurses → more nurses leave → more empty roles. Once it starts, it's hard to break without a plan.
                   </InsightBox>
                 </div>
               )}
@@ -620,28 +632,30 @@ const Assessment = () => {
                     <div className="flex items-start gap-3">
                       <DollarSign className="text-accent mt-1" size={22} />
                       <div>
-                        <h2 className="font-serif text-3xl text-foreground">Financial impact</h2>
-                        <p className="text-sm text-muted-foreground mt-1">Section 3 — Recovery scenario & risk</p>
+                        <h2 className="font-serif text-3xl text-foreground">What could you save — and what's at risk?</h2>
+                        <p className="text-sm text-muted-foreground mt-2 max-w-[60ch]">
+                          A few last questions about your hiring speed, your goals, and how stretched your team feels. Then we'll show you the full picture.
+                        </p>
                       </div>
                     </div>
 
                     <div className="grid sm:grid-cols-3 gap-4">
-                      <Field label="Retention Improvement Target" hint="Realistic 12-month goal">
+                      <Field label="If we kept more nurses, how much better would you like to do?" hint="A realistic 12-month goal — small improvements add up fast">
                         <select
                           value={form.retentionImprovementPct}
                           onChange={(e) => update("retentionImprovementPct", e.target.value)}
                           className="w-full px-4 py-3 rounded-lg bg-muted border border-transparent text-foreground text-sm focus:outline-none focus:border-accent/60"
                         >
-                          <option value="5">5% improvement</option>
-                          <option value="10">10% improvement</option>
-                          <option value="15">15% improvement</option>
-                          <option value="20">20% improvement</option>
+                          <option value="5">Keep 5% more nurses</option>
+                          <option value="10">Keep 10% more nurses</option>
+                          <option value="15">Keep 15% more nurses</option>
+                          <option value="20">Keep 20% more nurses</option>
                         </select>
                       </Field>
-                      <Field label="Time to Fill" hint="Days to fill an open RN role">
-                        <NumInput value={form.timeToFill} onChange={(v) => update("timeToFill", v)} placeholder="68" suffix="days" />
+                      <Field label="On average, how long does it take to fill an open nurse role?" hint="From posting the job to the nurse starting. Estimate is fine.">
+                        <NumInput value={form.timeToFill} onChange={(v) => update("timeToFill", v)} placeholder="e.g. 68" suffix="days" />
                       </Field>
-                      <Field label="Burnout Risk Index">
+                      <Field label="How burned out does your nursing team feel right now?" hint="Your honest gut read — you know your team best">
                         <div className="grid grid-cols-3 gap-2">
                           {(["low", "moderate", "high"] as const).map((r) => (
                             <button
@@ -668,29 +682,29 @@ const Assessment = () => {
                     {/* Live financial summary */}
                     <div className="bg-foreground text-background rounded-2xl p-6 mt-4">
                       <div className="text-[11px] uppercase tracking-[0.15em] text-background/60 mb-4">
-                        Live Financial Impact Summary
+                        Here's what your numbers tell us
                       </div>
                       <div className="grid sm:grid-cols-2 gap-x-8">
-                        <MetricRow label="Turnover cost (calculated)" value={fmt$(metrics.turnoverCost)} />
-                        <MetricRow label="True cost (1.75× adjusted)" value={fmt$(metrics.trueTurnoverCost)} />
-                        <MetricRow label="Annual agency spend" value={fmt$(metrics.annualAgency)} />
-                        <MetricRow label="Projected annual savings" value={fmt$(metrics.projectedSavings)} />
+                        <MetricRow label="What turnover is costing you" value={fmt$(metrics.turnoverCost)} />
+                        <MetricRow label="The real cost (with hidden losses)" value={fmt$(metrics.trueTurnoverCost)} />
+                        <MetricRow label="What you spend on agency nurses each year" value={fmt$(metrics.annualAgency)} />
+                        <MetricRow label="What you could save next year" value={fmt$(metrics.projectedSavings)} />
                       </div>
                       <div className="mt-5 pt-5 border-t border-background/10 grid sm:grid-cols-2 gap-4">
                         <div>
-                          <div className="text-[10px] uppercase tracking-[0.15em] text-background/60">Estimated Annual Loss</div>
+                          <div className="text-[10px] uppercase tracking-[0.15em] text-background/60">You're losing about this much every year</div>
                           <div className="font-mono-tabular text-3xl mt-1">{fmt$(metrics.totalAnnualLoss)}</div>
                         </div>
                         <div>
-                          <div className="text-[10px] uppercase tracking-[0.15em] text-background/60">3-Year Loss if Trends Continue</div>
+                          <div className="text-[10px] uppercase tracking-[0.15em] text-background/60">If nothing changes — 3-year loss</div>
                           <div className="font-mono-tabular text-3xl mt-1 text-accent">{fmt$(metrics.threeYearLoss)}</div>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  <InsightBox tone="consult" title="Consultant Note">
-                    Even a modest 5–10% retention improvement compounds across overtime reduction and agency offset, often paying for itself within one quarter.
+                  <InsightBox tone="consult" title="The good news">
+                    Even keeping just 5–10% more nurses creates a ripple effect — less overtime, fewer agency hours, more steady care. Most clients see the savings cover the work within a single quarter.
                   </InsightBox>
                 </div>
               )}
@@ -721,7 +735,7 @@ const Assessment = () => {
                 className="inline-flex items-center gap-2 px-8 py-3.5 bg-accent text-accent-foreground rounded-lg font-medium tracking-wide hover:brightness-95 active:scale-[0.98] disabled:opacity-40 disabled:pointer-events-none transition"
                 style={{ boxShadow: "var(--shadow-button)" }}
               >
-                {step === 3 ? "See My Stability Score" : "Continue"} <ArrowRight size={16} />
+                {step === 3 ? "Show Me My Score" : "Next"} <ArrowRight size={16} />
               </button>
             </div>
           )}
