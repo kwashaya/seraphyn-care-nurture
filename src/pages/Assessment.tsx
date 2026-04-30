@@ -735,7 +735,7 @@ const Assessment = () => {
                 className="inline-flex items-center gap-2 px-8 py-3.5 bg-accent text-accent-foreground rounded-lg font-medium tracking-wide hover:brightness-95 active:scale-[0.98] disabled:opacity-40 disabled:pointer-events-none transition"
                 style={{ boxShadow: "var(--shadow-button)" }}
               >
-                {step === 3 ? "See My Stability Score" : "Continue"} <ArrowRight size={16} />
+                {step === 3 ? "Show Me My Score" : "Next"} <ArrowRight size={16} />
               </button>
             </div>
           )}
