@@ -464,29 +464,41 @@ const Assessment = () => {
                     <div className="flex items-start gap-3">
                       <Users className="text-accent mt-1" size={22} />
                       <div>
-                        <h2 className="font-serif text-3xl text-foreground">Your current staffing reality</h2>
-                        <p className="text-sm text-muted-foreground mt-1">Section 1 — Retention, turnover & true cost</p>
+                        <h2 className="font-serif text-3xl text-foreground">Your nursing team — by the numbers</h2>
+                        <p className="text-sm text-muted-foreground mt-2 max-w-[60ch]">
+                          Think back over the past 12 months. Round numbers are fine — we just need a clear picture of how many nurses came, went, and stayed.
+                        </p>
                       </div>
                     </div>
 
                     <div className="grid sm:grid-cols-3 gap-4">
-                      <Field label="Starting Nurses (12 mo ago)">
-                        <NumInput value={form.startingNurses} onChange={(v) => update("startingNurses", v)} placeholder="220" />
+                      <Field label="How many nurses did you have a year ago?" hint="Your headcount 12 months back">
+                        <NumInput value={form.startingNurses} onChange={(v) => update("startingNurses", v)} placeholder="e.g. 220" />
                       </Field>
-                      <Field label="Ending Nurses (today)">
-                        <NumInput value={form.endingNurses} onChange={(v) => update("endingNurses", v)} placeholder="210" />
+                      <Field label="How many nurses do you have today?" hint="Current total nursing staff">
+                        <NumInput value={form.endingNurses} onChange={(v) => update("endingNurses", v)} placeholder="e.g. 210" />
                       </Field>
-                      <Field label="New Hires (12 mo)">
-                        <NumInput value={form.newHires} onChange={(v) => update("newHires", v)} placeholder="55" />
+                      <Field label="How many new nurses did you hire this year?" hint="Total hires over the last 12 months">
+                        <NumInput value={form.newHires} onChange={(v) => update("newHires", v)} placeholder="e.g. 55" />
                       </Field>
-                      <Field label="Nurses Who Left">
-                        <NumInput value={form.nursesLeft} onChange={(v) => update("nursesLeft", v)} placeholder="65" />
+                      <Field label="How many nurses left this year?" hint="Resignations, terminations, retirements">
+                        <NumInput value={form.nursesLeft} onChange={(v) => update("nursesLeft", v)} placeholder="e.g. 65" />
                       </Field>
-                      <Field label="Total Nurses (current)">
-                        <NumInput value={form.totalNurses} onChange={(v) => update("totalNurses", v)} placeholder="210" />
+                      <Field label="What's your average nurse headcount?" hint="A rough average across the year is fine">
+                        <NumInput value={form.totalNurses} onChange={(v) => update("totalNurses", v)} placeholder="e.g. 215" />
                       </Field>
-                      <Field label="Cost per Turnover" hint="Industry: $40K–$80K">
-                        <NumInput value={form.costPerNurse} onChange={(v) => update("costPerNurse", v)} placeholder="60000" prefix="$" />
+                      <Field label="What does it cost to replace one nurse?" hint="Industry estimate: $40K–$80K per nurse. Pick the closest.">
+                        <select
+                          value={form.costPerNurse}
+                          onChange={(e) => update("costPerNurse", e.target.value)}
+                          className="w-full px-4 py-3 rounded-lg bg-muted border border-transparent text-foreground text-sm focus:outline-none focus:border-accent/60"
+                        >
+                          <option value="40000">$40,000 — Conservative</option>
+                          <option value="55000">$55,000 — Moderate</option>
+                          <option value="60000">$60,000 — Average (most common)</option>
+                          <option value="70000">$70,000 — Above average</option>
+                          <option value="80000">$80,000 — High (specialty/ICU)</option>
+                        </select>
                       </Field>
                     </div>
 
@@ -508,13 +520,13 @@ const Assessment = () => {
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-4">
-                    <InsightBox tone="alert" title="Insight">
+                    <InsightBox tone="alert" title="What this means">
                       {metrics.retentionRate < 85
-                        ? "Your retention is below 85% — you're likely stuck in a constant hiring cycle. Each cycle compounds cost."
-                        : "Strong retention base. Protect it — the next 12 months determine whether it holds."}
+                        ? "When fewer than 85 out of 100 nurses stay, you're stuck in a constant hiring cycle — and every cycle costs more than the last."
+                        : "You're holding onto your nurses well. The next 12 months will determine whether that lasts."}
                     </InsightBox>
-                    <InsightBox tone="consult" title="Consultant Note">
-                      True cost of turnover is typically 1.5–2× the calculated figure once you include lost productivity, errors, and overtime backfill.
+                    <InsightBox tone="consult" title="Worth knowing">
+                      The real cost of losing a nurse is usually 1.5–2× higher than the obvious number — once you add lost productivity, errors, and overtime to cover the gap.
                     </InsightBox>
                   </div>
                 </div>
