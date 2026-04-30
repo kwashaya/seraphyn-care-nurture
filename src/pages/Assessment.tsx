@@ -397,7 +397,7 @@ const Assessment = () => {
               The Staffing Stability Assessment™
             </h1>
             <p className="mt-5 text-muted-foreground max-w-[55ch] mx-auto leading-relaxed">
-              A 6-step diagnostic that reveals your true cost of turnover, hidden financial leakage, and a customized strategy to recover lost revenue.
+              Answer a few simple questions about your nursing team. Estimates are perfectly fine — we'll calculate the rest and show you what it's costing you.
             </p>
           </div>
 
