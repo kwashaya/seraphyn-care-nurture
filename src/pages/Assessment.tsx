@@ -434,23 +434,23 @@ const Assessment = () => {
                 <div className="seraphyn-card space-y-6">
                   <div>
                     <h2 className="font-serif text-3xl text-foreground">
-                      Tell us about your organization
+                      First, tell us a little about you
                     </h2>
                     <p className="text-sm text-muted-foreground mt-2">
-                      Your data is confidential and used only to generate your report.
+                      We'll use this to personalize your report. Your information stays private.
                     </p>
                   </div>
                   <div className="grid sm:grid-cols-2 gap-5">
-                    <Field label="Organization Name">
-                      <TextInput value={form.orgName} onChange={(v) => update("orgName", v)} placeholder="Metro Health System" />
+                    <Field label="Where do you work?" hint="Your hospital, clinic, or facility name">
+                      <TextInput value={form.orgName} onChange={(v) => update("orgName", v)} placeholder="e.g. Metro Health System" />
                     </Field>
-                    <Field label="Your Role">
-                      <TextInput value={form.role} onChange={(v) => update("role", v)} placeholder="CNO, CFO, CHRO…" />
+                    <Field label="What's your job title?" hint="So we can tailor the report to you">
+                      <TextInput value={form.role} onChange={(v) => update("role", v)} placeholder="e.g. CNO, CFO, HR Director" />
                     </Field>
-                    <Field label="Full Name">
-                      <TextInput value={form.contactName} onChange={(v) => update("contactName", v)} placeholder="Jane Smith, RN" />
+                    <Field label="Your name">
+                      <TextInput value={form.contactName} onChange={(v) => update("contactName", v)} placeholder="Jane Smith" />
                     </Field>
-                    <Field label="Work Email">
+                    <Field label="Your work email" hint="We'll send your report here">
                       <TextInput type="email" value={form.email} onChange={(v) => update("email", v)} placeholder="jane@hospital.org" />
                     </Field>
                   </div>
