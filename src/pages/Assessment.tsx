@@ -539,26 +539,28 @@ const Assessment = () => {
                     <div className="flex items-start gap-3">
                       <Activity className="text-accent mt-1" size={22} />
                       <div>
-                        <h2 className="font-serif text-3xl text-foreground">What's driving your turnover</h2>
-                        <p className="text-sm text-muted-foreground mt-1">Section 2 — Vacancy, overtime & agency reliance</p>
+                        <h2 className="font-serif text-3xl text-foreground">What's stretching your team thin?</h2>
+                        <p className="text-sm text-muted-foreground mt-2 max-w-[60ch]">
+                          A few questions about open roles, overtime, and agency staff. These are the silent costs that quietly drain your budget every month.
+                        </p>
                       </div>
                     </div>
 
                     <div className="grid sm:grid-cols-2 gap-4">
-                      <Field label="Open Positions">
-                        <NumInput value={form.openPositions} onChange={(v) => update("openPositions", v)} placeholder="32" />
+                      <Field label="How many nursing positions are unfilled right now?" hint="Open roles you're actively trying to fill">
+                        <NumInput value={form.openPositions} onChange={(v) => update("openPositions", v)} placeholder="e.g. 32" />
                       </Field>
-                      <Field label="Total Positions">
-                        <NumInput value={form.totalPositions} onChange={(v) => update("totalPositions", v)} placeholder="240" />
+                      <Field label="How many nursing positions do you have in total?" hint="All budgeted RN positions, filled or not">
+                        <NumInput value={form.totalPositions} onChange={(v) => update("totalPositions", v)} placeholder="e.g. 240" />
                       </Field>
-                      <Field label="Overtime Hours (annual)">
-                        <NumInput value={form.overtimeHours} onChange={(v) => update("overtimeHours", v)} placeholder="48000" />
+                      <Field label="How many overtime hours did your nurses work this year?" hint="A yearly estimate is fine. Tip: monthly OT hours × 12">
+                        <NumInput value={form.overtimeHours} onChange={(v) => update("overtimeHours", v)} placeholder="e.g. 48,000" />
                       </Field>
-                      <Field label="Total Hours (annual)">
-                        <NumInput value={form.totalHours} onChange={(v) => update("totalHours", v)} placeholder="420000" />
+                      <Field label="How many total hours did your nurses work this year?" hint="Roughly 2,000 hrs per full-time nurse × your headcount">
+                        <NumInput value={form.totalHours} onChange={(v) => update("totalHours", v)} placeholder="e.g. 420,000" />
                       </Field>
-                      <Field label="Monthly Agency Spend">
-                        <NumInput value={form.monthlyAgencySpend} onChange={(v) => update("monthlyAgencySpend", v)} placeholder="180000" prefix="$" />
+                      <Field label="How much do you spend on agency / travel nurses each month?" hint="Your average monthly invoice. Enter 0 if none.">
+                        <NumInput value={form.monthlyAgencySpend} onChange={(v) => update("monthlyAgencySpend", v)} placeholder="e.g. 180,000" prefix="$" />
                       </Field>
                       <div className="bg-muted/60 rounded-xl p-4">
                         <div className="text-[10px] uppercase tracking-[0.15em] text-muted-foreground font-medium">Annual Agency Spend</div>
@@ -579,13 +581,14 @@ const Assessment = () => {
 
                     {/* Pattern recognition */}
                     <div className="pt-4 border-t border-border">
-                      <h3 className="text-xs mb-3 text-muted-foreground">Pattern Recognition — Check all that apply</h3>
+                      <h3 className="text-xs mb-2 text-muted-foreground">Which of these sound familiar?</h3>
+                      <p className="text-xs text-muted-foreground/80 mb-3">Tap any that match what you're seeing in your organization. Skip if none apply.</p>
                       <div className="grid sm:grid-cols-2 gap-2">
                         {[
-                          "High turnover + overtime",
-                          "High vacancy + agency use",
-                          "Slow hiring + burnout",
-                          "Rising costs without improvement",
+                          "Nurses leaving + overtime keeps climbing",
+                          "Lots of open roles + heavy agency use",
+                          "Hiring takes forever + the team feels burned out",
+                          "Costs going up but nothing is improving",
                         ].map((p) => {
                           const active = form.patterns.includes(p);
                           return (
@@ -616,11 +619,8 @@ const Assessment = () => {
                     </div>
                   </div>
 
-                  <InsightBox tone="alert" title="System Insight">
-                    When vacancy, overtime, and agency usage rise together, they create a feedback loop:
-                    <span className="block mt-2 font-medium text-foreground">
-                      Vacancies → Overtime → Burnout → Turnover → More Vacancies
-                    </span>
+                  <InsightBox tone="alert" title="The cycle to watch for">
+                    These problems feed each other. Empty roles → more overtime → tired nurses → more nurses leave → more empty roles. Once it starts, it's hard to break without a plan.
                   </InsightBox>
                 </div>
               )}
