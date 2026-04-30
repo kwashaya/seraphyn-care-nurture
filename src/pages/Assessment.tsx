@@ -632,28 +632,30 @@ const Assessment = () => {
                     <div className="flex items-start gap-3">
                       <DollarSign className="text-accent mt-1" size={22} />
                       <div>
-                        <h2 className="font-serif text-3xl text-foreground">Financial impact</h2>
-                        <p className="text-sm text-muted-foreground mt-1">Section 3 — Recovery scenario & risk</p>
+                        <h2 className="font-serif text-3xl text-foreground">What could you save — and what's at risk?</h2>
+                        <p className="text-sm text-muted-foreground mt-2 max-w-[60ch]">
+                          A few last questions about your hiring speed, your goals, and how stretched your team feels. Then we'll show you the full picture.
+                        </p>
                       </div>
                     </div>
 
                     <div className="grid sm:grid-cols-3 gap-4">
-                      <Field label="Retention Improvement Target" hint="Realistic 12-month goal">
+                      <Field label="If we kept more nurses, how much better would you like to do?" hint="A realistic 12-month goal — small improvements add up fast">
                         <select
                           value={form.retentionImprovementPct}
                           onChange={(e) => update("retentionImprovementPct", e.target.value)}
                           className="w-full px-4 py-3 rounded-lg bg-muted border border-transparent text-foreground text-sm focus:outline-none focus:border-accent/60"
                         >
-                          <option value="5">5% improvement</option>
-                          <option value="10">10% improvement</option>
-                          <option value="15">15% improvement</option>
-                          <option value="20">20% improvement</option>
+                          <option value="5">Keep 5% more nurses</option>
+                          <option value="10">Keep 10% more nurses</option>
+                          <option value="15">Keep 15% more nurses</option>
+                          <option value="20">Keep 20% more nurses</option>
                         </select>
                       </Field>
-                      <Field label="Time to Fill" hint="Days to fill an open RN role">
-                        <NumInput value={form.timeToFill} onChange={(v) => update("timeToFill", v)} placeholder="68" suffix="days" />
+                      <Field label="On average, how long does it take to fill an open nurse role?" hint="From posting the job to the nurse starting. Estimate is fine.">
+                        <NumInput value={form.timeToFill} onChange={(v) => update("timeToFill", v)} placeholder="e.g. 68" suffix="days" />
                       </Field>
-                      <Field label="Burnout Risk Index">
+                      <Field label="How burned out does your nursing team feel right now?" hint="Your honest gut read — you know your team best">
                         <div className="grid grid-cols-3 gap-2">
                           {(["low", "moderate", "high"] as const).map((r) => (
                             <button
@@ -680,29 +682,29 @@ const Assessment = () => {
                     {/* Live financial summary */}
                     <div className="bg-foreground text-background rounded-2xl p-6 mt-4">
                       <div className="text-[11px] uppercase tracking-[0.15em] text-background/60 mb-4">
-                        Live Financial Impact Summary
+                        Here's what your numbers tell us
                       </div>
                       <div className="grid sm:grid-cols-2 gap-x-8">
-                        <MetricRow label="Turnover cost (calculated)" value={fmt$(metrics.turnoverCost)} />
-                        <MetricRow label="True cost (1.75× adjusted)" value={fmt$(metrics.trueTurnoverCost)} />
-                        <MetricRow label="Annual agency spend" value={fmt$(metrics.annualAgency)} />
-                        <MetricRow label="Projected annual savings" value={fmt$(metrics.projectedSavings)} />
+                        <MetricRow label="What turnover is costing you" value={fmt$(metrics.turnoverCost)} />
+                        <MetricRow label="The real cost (with hidden losses)" value={fmt$(metrics.trueTurnoverCost)} />
+                        <MetricRow label="What you spend on agency nurses each year" value={fmt$(metrics.annualAgency)} />
+                        <MetricRow label="What you could save next year" value={fmt$(metrics.projectedSavings)} />
                       </div>
                       <div className="mt-5 pt-5 border-t border-background/10 grid sm:grid-cols-2 gap-4">
                         <div>
-                          <div className="text-[10px] uppercase tracking-[0.15em] text-background/60">Estimated Annual Loss</div>
+                          <div className="text-[10px] uppercase tracking-[0.15em] text-background/60">You're losing about this much every year</div>
                           <div className="font-mono-tabular text-3xl mt-1">{fmt$(metrics.totalAnnualLoss)}</div>
                         </div>
                         <div>
-                          <div className="text-[10px] uppercase tracking-[0.15em] text-background/60">3-Year Loss if Trends Continue</div>
+                          <div className="text-[10px] uppercase tracking-[0.15em] text-background/60">If nothing changes — 3-year loss</div>
                           <div className="font-mono-tabular text-3xl mt-1 text-accent">{fmt$(metrics.threeYearLoss)}</div>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  <InsightBox tone="consult" title="Consultant Note">
-                    Even a modest 5–10% retention improvement compounds across overtime reduction and agency offset, often paying for itself within one quarter.
+                  <InsightBox tone="consult" title="The good news">
+                    Even keeping just 5–10% more nurses creates a ripple effect — less overtime, fewer agency hours, more steady care. Most clients see the savings cover the work within a single quarter.
                   </InsightBox>
                 </div>
               )}
