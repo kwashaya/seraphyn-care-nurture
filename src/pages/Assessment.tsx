@@ -199,11 +199,11 @@ type Metrics = ReturnType<typeof computeMetrics>;
 
 const stepLabels = [
   "About You",
-  "Retention",
-  "Drivers",
-  "Financial",
-  "Stability",
-  "Report",
+  "Your Team",
+  "What's Happening",
+  "The Impact",
+  "Your Score",
+  "Your Report",
 ];
 
 /* ---------------- Reusable UI ---------------- */
