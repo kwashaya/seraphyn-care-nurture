@@ -176,7 +176,7 @@ const QuestionCard = ({
   description,
   children,
 }: {
-  num: string;
+  num: React.ReactNode;
   title: string;
   description: string;
   children: React.ReactNode;
