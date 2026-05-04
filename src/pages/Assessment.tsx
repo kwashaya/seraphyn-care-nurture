@@ -339,16 +339,16 @@ const Assessment = () => {
       ? null
       : calc.retentionRate >= 90
       ? {
-          msg: "✅ Strong retention. Your organization has stable staffing foundations — focus on maintaining this level.",
+          msg: "Strong retention. Your organization has stable staffing foundations — focus on maintaining this level.",
           tone: "green",
         }
       : calc.retentionRate >= 85
       ? {
-          msg: "⚠️ Moderate. You're close to the danger zone. Small improvements could meaningfully stabilize your workforce.",
+          msg: "Moderate. You're close to the danger zone. Small improvements could meaningfully stabilize your workforce.",
           tone: "amber",
         }
       : {
-          msg: "🔴 Below 85% — your organization is likely stuck in a constant hiring cycle, with significant hidden costs compounding monthly.",
+          msg: "Below 85% — your organization is likely stuck in a constant hiring cycle, with significant hidden costs compounding monthly.",
           tone: "red",
         };
 
@@ -357,16 +357,16 @@ const Assessment = () => {
       ? null
       : calc.turnoverRate <= 10
       ? {
-          msg: "✅ Low turnover. Industry-leading stability — well below the national average of ~22%.",
+          msg: "Low turnover. Industry-leading stability — well below the national average of ~22%.",
           tone: "green" as InsightTone,
         }
       : calc.turnoverRate <= 20
       ? {
-          msg: "⚠️ Moderate turnover (~national average). Proactive retention programs could prevent escalation.",
+          msg: "Moderate turnover (~national average). Proactive retention programs could prevent escalation.",
           tone: "amber" as InsightTone,
         }
       : {
-          msg: "🔴 High turnover compounds costs through training, lost productivity, and increased clinical errors. Immediate action recommended.",
+          msg: "High turnover compounds costs through training, lost productivity, and increased clinical errors. Immediate action recommended.",
           tone: "red" as InsightTone,
         };
 
@@ -375,16 +375,16 @@ const Assessment = () => {
       ? null
       : calc.turnoverCost < 200000
       ? {
-          msg: "✅ Below $200K. Manageable — but remember: true cost is often 1.5–2× your calculated number.",
+          msg: "Below $200K. Manageable — but remember: true cost is often 1.5–2× your calculated number.",
           tone: "green" as InsightTone,
         }
       : calc.turnoverCost < 500000
       ? {
-          msg: "⚠️ $200K–$500K. Significant leakage. Tailored retention programs will deliver strong ROI.",
+          msg: "$200K–$500K. Significant leakage. Tailored retention programs will deliver strong ROI.",
           tone: "amber" as InsightTone,
         }
       : {
-          msg: `🔴 Above $500K — significant hidden financial loss. A 10% retention improvement alone could recover $${Math.round(
+          msg: `Above $500K — significant hidden financial loss. A 10% retention improvement alone could recover $${Math.round(
             calc.turnoverCost * 0.1
           ).toLocaleString()} annually.`,
           tone: "red" as InsightTone,
@@ -395,16 +395,16 @@ const Assessment = () => {
       ? null
       : calc.vacancyRate <= 5
       ? {
-          msg: "✅ Low vacancy. Strong hiring or solid retention — your team isn't carrying undue pressure.",
+          msg: "Low vacancy. Strong hiring or solid retention — your team isn't carrying undue pressure.",
           tone: "green" as InsightTone,
         }
       : calc.vacancyRate <= 10
       ? {
-          msg: "⚠️ Approaching critical threshold. Monitor closely — above 10% triggers the burnout feedback loop.",
+          msg: "Approaching critical threshold. Monitor closely — above 10% triggers the burnout feedback loop.",
           tone: "amber" as InsightTone,
         }
       : {
-          msg: "🔴 Above 10% — this is actively creating a self-perpetuating staffing crisis: Vacancies → Overtime → Burnout → More Vacancies.",
+          msg: "Above 10% — this is actively creating a self-perpetuating staffing crisis: Vacancies → Overtime → Burnout → More Vacancies.",
           tone: "red" as InsightTone,
         };
 
@@ -413,16 +413,16 @@ const Assessment = () => {
       ? null
       : calc.overtimePct <= 5
       ? {
-          msg: "✅ Healthy overtime levels. Staff are not being overextended.",
+          msg: "Healthy overtime levels. Staff are not being overextended.",
           tone: "green" as InsightTone,
         }
       : calc.overtimePct <= 10
       ? {
-          msg: "⚠️ Elevated overtime. If the same nurses are consistently covering extra shifts, watch for early burnout signals.",
+          msg: "Elevated overtime. If the same nurses are consistently covering extra shifts, watch for early burnout signals.",
           tone: "amber" as InsightTone,
         }
       : {
-          msg: "🔴 High overtime burden. This is one of the strongest predictors of imminent turnover — your team is at serious risk.",
+          msg: "High overtime burden. This is one of the strongest predictors of imminent turnover — your team is at serious risk.",
           tone: "red" as InsightTone,
         };
 
@@ -431,26 +431,26 @@ const Assessment = () => {
       ? null
       : calc.agencyAnnual < 100000
       ? {
-          msg: "✅ Low agency spend. You're not overly dependent on temporary staffing.",
+          msg: "Low agency spend. You're not overly dependent on temporary staffing.",
           tone: "green" as InsightTone,
         }
       : calc.agencyAnnual < 500000
       ? {
-          msg: "⚠️ Notable agency spend. This level of reliance begins to significantly inflate long-term labor costs.",
+          msg: "Notable agency spend. This level of reliance begins to significantly inflate long-term labor costs.",
           tone: "amber" as InsightTone,
         }
       : {
-          msg: "🔴 High agency dependency — this signals deeper retention issues and is masking the true cost of your staffing model.",
+          msg: "High agency dependency — this signals deeper retention issues and is masking the true cost of your staffing model.",
           tone: "red" as InsightTone,
         };
 
   const burnoutMsg: Record<BurnoutLevel, string> = {
-    Low: "✅ Low risk. Staffing levels are stable, overtime is minimal, and your team is generally not overworked.",
+    Low: "Low risk. Staffing levels are stable, overtime is minimal, and your team is generally not overworked.",
     Moderate:
-      "⚠️ Moderate risk. You experience occasional staffing gaps or overtime, with some signs of fatigue beginning to surface.",
-    High: "🟠 High risk. Staffing shortages and overtime are frequent — your team is often stretched thin.",
+      "Moderate risk. You experience occasional staffing gaps or overtime, with some signs of fatigue beginning to surface.",
+    High: "High risk. Staffing shortages and overtime are frequent — your team is often stretched thin.",
     Severe:
-      "🔴 Severe risk. Consistently understaffed, heavy reliance on overtime or agency staff, and burnout is clearly impacting your team.",
+      "Severe risk. Consistently understaffed, heavy reliance on overtime or agency staff, and burnout is clearly impacting your team.",
   };
 
   /* ---- Score appearance ---- */
@@ -459,24 +459,24 @@ const Assessment = () => {
     if (t >= 85)
       return {
         color: "hsl(150 55% 45%)",
-        label: "🟢 Stable — Strong Systems In Place",
+        label: "Stable — Strong Systems In Place",
         ring: "border-emerald-500/40 bg-emerald-50 text-emerald-700",
       };
     if (t >= 70)
       return {
         color: "hsl(40 70% 50%)",
-        label: "🟡 Moderate Risk — Some Instability",
+        label: "Moderate Risk — Some Instability",
         ring: "border-accent/40 bg-accent/10 text-accent",
       };
     if (t >= 50)
       return {
         color: "hsl(22 85% 55%)",
-        label: "🟠 High Risk — Significant Issues",
+        label: "High Risk — Significant Issues",
         ring: "border-orange-500/40 bg-orange-50 text-orange-700",
       };
     return {
       color: "hsl(0 70% 55%)",
-      label: "🔴 Critical — Immediate Intervention Needed",
+      label: "Critical — Immediate Intervention Needed",
       ring: "border-destructive/40 bg-destructive/10 text-destructive",
     };
   }, [calc.total]);
@@ -1156,7 +1156,7 @@ const Assessment = () => {
                         value={fmt$(calc.agencyAnnual)}
                       />
                       <FinRow
-                        label="⚠️ Estimated 3-Year Loss"
+                        label="Estimated 3-Year Loss"
                         sub="If trends continue"
                         value={fmt$(calc.threeYearLoss)}
                         emphasis
@@ -1368,7 +1368,7 @@ const Assessment = () => {
                         />
                       )}
                       <FinRow
-                        label="🔴 Estimated Annual Loss"
+                        label="Estimated Annual Loss"
                         value={fmt$(calc.annualLoss)}
                         emphasis
                       />
