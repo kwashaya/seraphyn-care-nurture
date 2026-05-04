@@ -1391,22 +1391,45 @@ const Assessment = () => {
                   </ul>
                 </div>
 
-                {/* CTA */}
-                <div className="mt-10 rounded-3xl border border-accent/30 bg-gradient-to-br from-accent/10 to-primary/5 p-9 text-center print:hidden">
+                {/* CTA — Calendly embed */}
+                <div className="mt-10 rounded-3xl border border-accent/30 bg-gradient-to-br from-accent/10 to-primary/5 p-6 md:p-9 text-center print:hidden">
                   <h3 className="mb-2 font-serif text-2xl normal-case tracking-normal text-foreground">
                     Ready to Recover Your Lost Revenue?
                   </h3>
                   <p className="mx-auto mb-6 max-w-xl text-sm leading-relaxed text-muted-foreground">
-                    You've identified the problem. Now get a tailored strategy
-                    to reduce turnover, stabilize staffing, and recover lost
-                    revenue — built specifically for your organization.
+                    {f.fullName ? `${f.fullName.split(" ")[0]}, you've ` : "You've "}
+                    identified the problem. Book a free strategy call below to
+                    get a tailored plan to reduce turnover, stabilize staffing,
+                    and recover lost revenue at {f.orgName || "your organization"}.
                   </p>
-                  <Button asChild size="lg">
-                    <Link to="/book">
-                      Book Your Free Strategy Call
-                      <ArrowRight className="ml-1 h-4 w-4" />
-                    </Link>
-                  </Button>
+                  <div className="overflow-hidden rounded-2xl border border-border bg-background">
+                    <iframe
+                      src={`https://calendly.com/seraphyncare-info/30min?hide_gdpr_banner=1&name=${encodeURIComponent(
+                        f.fullName
+                      )}&email=${encodeURIComponent(
+                        f.email
+                      )}&a1=${encodeURIComponent(
+                        `${f.position} @ ${f.orgName}`
+                      )}`}
+                      title="Book a strategy call with Seraphyn Care"
+                      width="100%"
+                      height="700"
+                      frameBorder="0"
+                      className="block w-full"
+                    />
+                  </div>
+                  <p className="mt-4 text-xs text-muted-foreground">
+                    Trouble loading the calendar?{" "}
+                    <a
+                      href="https://calendly.com/seraphyncare-info/30min"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="underline"
+                    >
+                      Open in a new tab
+                    </a>
+                    .
+                  </p>
                 </div>
 
                 <div className="mt-8 flex justify-between print:hidden">
