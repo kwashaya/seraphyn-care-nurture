@@ -151,13 +151,21 @@ const InsightBox = ({
     amber: "border-l-accent bg-accent/5 text-accent-foreground/80",
     green: "border-l-emerald-600 bg-emerald-50 text-emerald-900",
   };
+  const iconTone: Record<InsightTone, string> = {
+    red: "text-destructive",
+    amber: "text-accent",
+    green: "text-emerald-600",
+  };
+  const Icon =
+    tone === "green" ? CheckCircle2 : tone === "amber" ? AlertTriangle : AlertOctagon;
   return (
     <motion.div
       initial={{ opacity: 0, y: 6 }}
       animate={{ opacity: 1, y: 0 }}
-      className={`mt-4 rounded-r-xl border-l-[3px] px-4 py-3 text-sm leading-relaxed ${tones[tone]}`}
+      className={`mt-4 flex items-start gap-3 rounded-r-xl border-l-[3px] px-4 py-3 text-sm leading-relaxed ${tones[tone]}`}
     >
-      {message}
+      <Icon size={18} strokeWidth={1.75} className={`mt-0.5 shrink-0 ${iconTone[tone]}`} />
+      <span>{message}</span>
     </motion.div>
   );
 };
