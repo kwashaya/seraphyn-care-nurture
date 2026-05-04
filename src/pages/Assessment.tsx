@@ -11,7 +11,28 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { ArrowLeft, ArrowRight, Printer, Sparkles } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  Printer,
+  Sparkles,
+  CheckCircle2,
+  AlertTriangle,
+  AlertOctagon,
+  ShieldCheck,
+  ShieldAlert,
+  Target,
+  Timer,
+  Megaphone,
+  DollarSign,
+  HeartPulse,
+  BarChart3,
+  ClipboardList,
+  Wrench,
+  TrendingUp,
+  TrendingDown,
+  Sparkle,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 
 /* ---------------- Types ---------------- */
