@@ -487,47 +487,47 @@ const Assessment = () => {
 
   /* ---- Recommendations ---- */
   const recs = useMemo(() => {
-    const list: { icon: string; title: string; desc: string }[] = [];
+    const list: { icon: typeof Target; title: string; desc: string }[] = [];
     if (calc.retentionRate != null && calc.retentionRate < 85)
       list.push({
-        icon: "🎯",
+        icon: Target,
         title: "Priority 1: Stabilize Retention",
         desc: "Improve early nurse experience and address onboarding gaps. Nurses leaving in 6–12 months signal support failures, not recruitment failures.",
       });
     if (calc.overtimePct != null && calc.overtimePct > 10)
       list.push({
-        icon: "⏱",
+        icon: Timer,
         title: "Reduce Overtime Dependency",
         desc: "Identify which units carry disproportionate overtime. Build scheduling buffers before resignations accelerate.",
       });
     if (calc.vacancyRate != null && calc.vacancyRate > 10)
       list.push({
-        icon: "📢",
+        icon: Megaphone,
         title: "Strengthen Hiring Pipeline",
         desc: "Time-to-fill delays are compounding pressure on your existing team. Build a consistent candidate flow to reduce average fill time.",
       });
     const ag = num(f.agencyReliance);
     if (ag != null && ag < 15)
       list.push({
-        icon: "💰",
+        icon: DollarSign,
         title: "Reduce Agency Reliance",
         desc: "Constant agency use is masking deeper retention issues while inflating costs. Reduce dependency through tailored retention incentives.",
       });
     if (f.burnout === "High" || f.burnout === "Severe")
       list.push({
-        icon: "❤️",
+        icon: HeartPulse,
         title: "Address Burnout Drivers Urgently",
         desc: "Burnout shows in data before behavior. Conduct unit-level pulse surveys now — intervention before resignations is always less expensive.",
       });
     if (calc.total < 70)
       list.push({
-        icon: "📊",
+        icon: BarChart3,
         title: "Book a Workforce Optimization Analysis",
         desc: "Organizations scoring below 70 are typically overspending 20–40% on labor costs. A tailored strategy can begin recovering this within 90 days.",
       });
     if (!list.length)
       list.push({
-        icon: "✅",
+        icon: ShieldCheck,
         title: "Maintain Your Strong Foundation",
         desc: "Your score reflects solid workforce management. Focus on continuous monitoring and proactive retention programs to sustain this advantage.",
       });
