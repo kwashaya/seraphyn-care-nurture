@@ -30,8 +30,6 @@ import {
   ClipboardList,
   Wrench,
   TrendingUp,
-  TrendingDown,
-  Sparkle,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
