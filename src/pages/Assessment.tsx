@@ -1040,52 +1040,73 @@ const Assessment = () => {
                 <QuestionCard
                   num="09"
                   title="Burnout Risk Index"
-                  description="Burnout shows in data before behavior. It's a financial and safety risk — not just emotional."
+                  description="Based on your current staffing situation, how would you describe your team's level of burnout risk? Think about overtime, staffing shortages, and turnover when answering — choose the option that best reflects your current reality."
                 >
-                  <p className="mb-3 text-sm text-muted-foreground">
-                    Based on your overtime, vacancy, and turnover data — select
-                    your overall burnout risk assessment:
-                  </p>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="grid gap-3">
                     {(
                       [
-                        { l: "Low", emoji: "🟢", cls: "emerald" },
-                        { l: "Moderate", emoji: "🟡", cls: "accent" },
-                        { l: "High", emoji: "🟠", cls: "orange" },
-                        { l: "Critical", emoji: "🔴", cls: "destructive" },
+                        {
+                          l: "Low",
+                          emoji: "🟢",
+                          cls: "emerald",
+                          headline: "Low Risk",
+                          desc: "Our staffing levels are stable, overtime is minimal, and our team is generally not overworked.",
+                        },
+                        {
+                          l: "Moderate",
+                          emoji: "🟡",
+                          cls: "accent",
+                          headline: "Moderate Risk",
+                          desc: "We experience occasional staffing gaps or overtime, and some signs of fatigue are present.",
+                        },
+                        {
+                          l: "High",
+                          emoji: "🟠",
+                          cls: "orange",
+                          headline: "High Risk",
+                          desc: "Staffing shortages and overtime are frequent, and our team is often stretched thin.",
+                        },
+                        {
+                          l: "Severe",
+                          emoji: "🔴",
+                          cls: "destructive",
+                          headline: "Severe Risk",
+                          desc: "We are consistently understaffed, relying heavily on overtime or agency staff, and burnout is clearly impacting our team.",
+                        },
                       ] as const
                     ).map((b) => {
                       const selected = f.burnout === b.l;
                       const colorMap: Record<string, string> = {
                         emerald:
-                          "border-emerald-500 bg-emerald-50 text-emerald-700",
-                        accent: "border-accent bg-accent/15 text-accent",
+                          "border-emerald-500 bg-emerald-50 text-emerald-900",
+                        accent: "border-accent bg-accent/10 text-foreground",
                         orange:
-                          "border-orange-500 bg-orange-50 text-orange-700",
+                          "border-orange-500 bg-orange-50 text-orange-900",
                         destructive:
-                          "border-destructive bg-destructive/10 text-destructive",
+                          "border-destructive bg-destructive/10 text-foreground",
                       };
                       return (
                         <button
                           key={b.l}
                           type="button"
                           onClick={() => set("burnout", b.l)}
-                          className={`rounded-full border px-5 py-2 text-sm font-medium transition-all ${
+                          className={`rounded-2xl border px-5 py-4 text-left transition-all ${
                             selected
                               ? colorMap[b.cls]
-                              : "border-border text-muted-foreground hover:border-foreground/20"
+                              : "border-border bg-background hover:border-foreground/20"
                           }`}
                         >
-                          {b.emoji} {b.l}
+                          <div className="flex items-center gap-2 text-sm font-semibold">
+                            <span>{b.emoji}</span>
+                            <span>{b.headline}</span>
+                          </div>
+                          <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                            {b.desc}
+                          </p>
                         </button>
                       );
                     })}
                   </div>
-                  {f.burnout && (
-                    <p className="mt-4 text-sm text-muted-foreground">
-                      {burnoutMsg[f.burnout]}
-                    </p>
-                  )}
                 </QuestionCard>
 
                 <QuestionCard
