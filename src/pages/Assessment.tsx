@@ -180,7 +180,7 @@ const QuestionCard = ({
 const SECTIONS = 4;
 
 const Assessment = () => {
-  const [section, setSection] = useState(1);
+  const [section, setSection] = useState(0);
   const [f, setF] = useState<FormState>(initialState);
 
   const set = (key: keyof FormState, value: string) =>
