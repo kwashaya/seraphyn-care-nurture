@@ -416,12 +416,12 @@ const Assessment = () => {
         };
 
   const burnoutMsg: Record<BurnoutLevel, string> = {
-    Low: "✅ Low risk. Your data shows a sustainable workload — maintain current practices.",
+    Low: "✅ Low risk. Staffing levels are stable, overtime is minimal, and your team is generally not overworked.",
     Moderate:
-      "⚠️ Moderate risk. Burnout is a lagging indicator; address workload drivers before they escalate.",
-    High: "🟠 High risk. Burnout is actively reducing quality of care and accelerating turnover. Intervention recommended.",
-    Critical:
-      "🔴 Critical. Your team is at immediate risk of cascading resignations. This requires urgent, structural intervention.",
+      "⚠️ Moderate risk. You experience occasional staffing gaps or overtime, with some signs of fatigue beginning to surface.",
+    High: "🟠 High risk. Staffing shortages and overtime are frequent — your team is often stretched thin.",
+    Severe:
+      "🔴 Severe risk. Consistently understaffed, heavy reliance on overtime or agency staff, and burnout is clearly impacting your team.",
   };
 
   /* ---- Score appearance ---- */
