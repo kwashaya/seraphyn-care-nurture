@@ -484,7 +484,7 @@ const Assessment = () => {
         title: "Reduce Agency Reliance",
         desc: "Constant agency use is masking deeper retention issues while inflating costs. Reduce dependency through tailored retention incentives.",
       });
-    if (f.burnout === "High" || f.burnout === "Critical")
+    if (f.burnout === "High" || f.burnout === "Severe")
       list.push({
         icon: "❤️",
         title: "Address Burnout Drivers Urgently",
