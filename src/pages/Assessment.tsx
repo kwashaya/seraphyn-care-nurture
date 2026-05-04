@@ -17,9 +17,14 @@ import { Link } from "react-router-dom";
 /* ---------------- Types ---------------- */
 
 type InsightTone = "red" | "amber" | "green";
-type BurnoutLevel = "Low" | "Moderate" | "High" | "Critical";
+type BurnoutLevel = "Low" | "Moderate" | "High" | "Severe";
 
 type FormState = {
+  // Section 0 — About you
+  orgName: string;
+  position: string;
+  fullName: string;
+  email: string;
   // Section 1
   startNurses: string;
   endNurses: string;
