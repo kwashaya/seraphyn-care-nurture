@@ -11,7 +11,26 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { ArrowLeft, ArrowRight, Printer, Sparkles } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  Printer,
+  Sparkles,
+  CheckCircle2,
+  AlertTriangle,
+  AlertOctagon,
+  ShieldCheck,
+  ShieldAlert,
+  Target,
+  Timer,
+  Megaphone,
+  DollarSign,
+  HeartPulse,
+  BarChart3,
+  ClipboardList,
+  Wrench,
+  TrendingUp,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 
 /* ---------------- Types ---------------- */
@@ -130,13 +149,21 @@ const InsightBox = ({
     amber: "border-l-accent bg-accent/5 text-accent-foreground/80",
     green: "border-l-emerald-600 bg-emerald-50 text-emerald-900",
   };
+  const iconTone: Record<InsightTone, string> = {
+    red: "text-destructive",
+    amber: "text-accent",
+    green: "text-emerald-600",
+  };
+  const Icon =
+    tone === "green" ? CheckCircle2 : tone === "amber" ? AlertTriangle : AlertOctagon;
   return (
     <motion.div
       initial={{ opacity: 0, y: 6 }}
       animate={{ opacity: 1, y: 0 }}
-      className={`mt-4 rounded-r-xl border-l-[3px] px-4 py-3 text-sm leading-relaxed ${tones[tone]}`}
+      className={`mt-4 flex items-start gap-3 rounded-r-xl border-l-[3px] px-4 py-3 text-sm leading-relaxed ${tones[tone]}`}
     >
-      {message}
+      <Icon size={18} strokeWidth={1.75} className={`mt-0.5 shrink-0 ${iconTone[tone]}`} />
+      <span>{message}</span>
     </motion.div>
   );
 };
@@ -147,7 +174,7 @@ const QuestionCard = ({
   description,
   children,
 }: {
-  num: string;
+  num: React.ReactNode;
   title: string;
   description: string;
   children: React.ReactNode;
@@ -310,16 +337,16 @@ const Assessment = () => {
       ? null
       : calc.retentionRate >= 90
       ? {
-          msg: "✅ Strong retention. Your organization has stable staffing foundations — focus on maintaining this level.",
+          msg: "Strong retention. Your organization has stable staffing foundations — focus on maintaining this level.",
           tone: "green",
         }
       : calc.retentionRate >= 85
       ? {
-          msg: "⚠️ Moderate. You're close to the danger zone. Small improvements could meaningfully stabilize your workforce.",
+          msg: "Moderate. You're close to the danger zone. Small improvements could meaningfully stabilize your workforce.",
           tone: "amber",
         }
       : {
-          msg: "🔴 Below 85% — your organization is likely stuck in a constant hiring cycle, with significant hidden costs compounding monthly.",
+          msg: "Below 85% — your organization is likely stuck in a constant hiring cycle, with significant hidden costs compounding monthly.",
           tone: "red",
         };
 
@@ -328,16 +355,16 @@ const Assessment = () => {
       ? null
       : calc.turnoverRate <= 10
       ? {
-          msg: "✅ Low turnover. Industry-leading stability — well below the national average of ~22%.",
+          msg: "Low turnover. Industry-leading stability — well below the national average of ~22%.",
           tone: "green" as InsightTone,
         }
       : calc.turnoverRate <= 20
       ? {
-          msg: "⚠️ Moderate turnover (~national average). Proactive retention programs could prevent escalation.",
+          msg: "Moderate turnover (~national average). Proactive retention programs could prevent escalation.",
           tone: "amber" as InsightTone,
         }
       : {
-          msg: "🔴 High turnover compounds costs through training, lost productivity, and increased clinical errors. Immediate action recommended.",
+          msg: "High turnover compounds costs through training, lost productivity, and increased clinical errors. Immediate action recommended.",
           tone: "red" as InsightTone,
         };
 
@@ -346,16 +373,16 @@ const Assessment = () => {
       ? null
       : calc.turnoverCost < 200000
       ? {
-          msg: "✅ Below $200K. Manageable — but remember: true cost is often 1.5–2× your calculated number.",
+          msg: "Below $200K. Manageable — but remember: true cost is often 1.5–2× your calculated number.",
           tone: "green" as InsightTone,
         }
       : calc.turnoverCost < 500000
       ? {
-          msg: "⚠️ $200K–$500K. Significant leakage. Tailored retention programs will deliver strong ROI.",
+          msg: "$200K–$500K. Significant leakage. Tailored retention programs will deliver strong ROI.",
           tone: "amber" as InsightTone,
         }
       : {
-          msg: `🔴 Above $500K — significant hidden financial loss. A 10% retention improvement alone could recover $${Math.round(
+          msg: `Above $500K — significant hidden financial loss. A 10% retention improvement alone could recover $${Math.round(
             calc.turnoverCost * 0.1
           ).toLocaleString()} annually.`,
           tone: "red" as InsightTone,
@@ -366,16 +393,16 @@ const Assessment = () => {
       ? null
       : calc.vacancyRate <= 5
       ? {
-          msg: "✅ Low vacancy. Strong hiring or solid retention — your team isn't carrying undue pressure.",
+          msg: "Low vacancy. Strong hiring or solid retention — your team isn't carrying undue pressure.",
           tone: "green" as InsightTone,
         }
       : calc.vacancyRate <= 10
       ? {
-          msg: "⚠️ Approaching critical threshold. Monitor closely — above 10% triggers the burnout feedback loop.",
+          msg: "Approaching critical threshold. Monitor closely — above 10% triggers the burnout feedback loop.",
           tone: "amber" as InsightTone,
         }
       : {
-          msg: "🔴 Above 10% — this is actively creating a self-perpetuating staffing crisis: Vacancies → Overtime → Burnout → More Vacancies.",
+          msg: "Above 10% — this is actively creating a self-perpetuating staffing crisis: Vacancies → Overtime → Burnout → More Vacancies.",
           tone: "red" as InsightTone,
         };
 
@@ -384,16 +411,16 @@ const Assessment = () => {
       ? null
       : calc.overtimePct <= 5
       ? {
-          msg: "✅ Healthy overtime levels. Staff are not being overextended.",
+          msg: "Healthy overtime levels. Staff are not being overextended.",
           tone: "green" as InsightTone,
         }
       : calc.overtimePct <= 10
       ? {
-          msg: "⚠️ Elevated overtime. If the same nurses are consistently covering extra shifts, watch for early burnout signals.",
+          msg: "Elevated overtime. If the same nurses are consistently covering extra shifts, watch for early burnout signals.",
           tone: "amber" as InsightTone,
         }
       : {
-          msg: "🔴 High overtime burden. This is one of the strongest predictors of imminent turnover — your team is at serious risk.",
+          msg: "High overtime burden. This is one of the strongest predictors of imminent turnover — your team is at serious risk.",
           tone: "red" as InsightTone,
         };
 
@@ -402,26 +429,26 @@ const Assessment = () => {
       ? null
       : calc.agencyAnnual < 100000
       ? {
-          msg: "✅ Low agency spend. You're not overly dependent on temporary staffing.",
+          msg: "Low agency spend. You're not overly dependent on temporary staffing.",
           tone: "green" as InsightTone,
         }
       : calc.agencyAnnual < 500000
       ? {
-          msg: "⚠️ Notable agency spend. This level of reliance begins to significantly inflate long-term labor costs.",
+          msg: "Notable agency spend. This level of reliance begins to significantly inflate long-term labor costs.",
           tone: "amber" as InsightTone,
         }
       : {
-          msg: "🔴 High agency dependency — this signals deeper retention issues and is masking the true cost of your staffing model.",
+          msg: "High agency dependency — this signals deeper retention issues and is masking the true cost of your staffing model.",
           tone: "red" as InsightTone,
         };
 
   const burnoutMsg: Record<BurnoutLevel, string> = {
-    Low: "✅ Low risk. Staffing levels are stable, overtime is minimal, and your team is generally not overworked.",
+    Low: "Low risk. Staffing levels are stable, overtime is minimal, and your team is generally not overworked.",
     Moderate:
-      "⚠️ Moderate risk. You experience occasional staffing gaps or overtime, with some signs of fatigue beginning to surface.",
-    High: "🟠 High risk. Staffing shortages and overtime are frequent — your team is often stretched thin.",
+      "Moderate risk. You experience occasional staffing gaps or overtime, with some signs of fatigue beginning to surface.",
+    High: "High risk. Staffing shortages and overtime are frequent — your team is often stretched thin.",
     Severe:
-      "🔴 Severe risk. Consistently understaffed, heavy reliance on overtime or agency staff, and burnout is clearly impacting your team.",
+      "Severe risk. Consistently understaffed, heavy reliance on overtime or agency staff, and burnout is clearly impacting your team.",
   };
 
   /* ---- Score appearance ---- */
@@ -430,24 +457,24 @@ const Assessment = () => {
     if (t >= 85)
       return {
         color: "hsl(150 55% 45%)",
-        label: "🟢 Stable — Strong Systems In Place",
+        label: "Stable — Strong Systems In Place",
         ring: "border-emerald-500/40 bg-emerald-50 text-emerald-700",
       };
     if (t >= 70)
       return {
         color: "hsl(40 70% 50%)",
-        label: "🟡 Moderate Risk — Some Instability",
+        label: "Moderate Risk — Some Instability",
         ring: "border-accent/40 bg-accent/10 text-accent",
       };
     if (t >= 50)
       return {
         color: "hsl(22 85% 55%)",
-        label: "🟠 High Risk — Significant Issues",
+        label: "High Risk — Significant Issues",
         ring: "border-orange-500/40 bg-orange-50 text-orange-700",
       };
     return {
       color: "hsl(0 70% 55%)",
-      label: "🔴 Critical — Immediate Intervention Needed",
+      label: "Critical — Immediate Intervention Needed",
       ring: "border-destructive/40 bg-destructive/10 text-destructive",
     };
   }, [calc.total]);
@@ -458,47 +485,47 @@ const Assessment = () => {
 
   /* ---- Recommendations ---- */
   const recs = useMemo(() => {
-    const list: { icon: string; title: string; desc: string }[] = [];
+    const list: { icon: typeof Target; title: string; desc: string }[] = [];
     if (calc.retentionRate != null && calc.retentionRate < 85)
       list.push({
-        icon: "🎯",
+        icon: Target,
         title: "Priority 1: Stabilize Retention",
         desc: "Improve early nurse experience and address onboarding gaps. Nurses leaving in 6–12 months signal support failures, not recruitment failures.",
       });
     if (calc.overtimePct != null && calc.overtimePct > 10)
       list.push({
-        icon: "⏱",
+        icon: Timer,
         title: "Reduce Overtime Dependency",
         desc: "Identify which units carry disproportionate overtime. Build scheduling buffers before resignations accelerate.",
       });
     if (calc.vacancyRate != null && calc.vacancyRate > 10)
       list.push({
-        icon: "📢",
+        icon: Megaphone,
         title: "Strengthen Hiring Pipeline",
         desc: "Time-to-fill delays are compounding pressure on your existing team. Build a consistent candidate flow to reduce average fill time.",
       });
     const ag = num(f.agencyReliance);
     if (ag != null && ag < 15)
       list.push({
-        icon: "💰",
+        icon: DollarSign,
         title: "Reduce Agency Reliance",
         desc: "Constant agency use is masking deeper retention issues while inflating costs. Reduce dependency through tailored retention incentives.",
       });
     if (f.burnout === "High" || f.burnout === "Severe")
       list.push({
-        icon: "❤️",
+        icon: HeartPulse,
         title: "Address Burnout Drivers Urgently",
         desc: "Burnout shows in data before behavior. Conduct unit-level pulse surveys now — intervention before resignations is always less expensive.",
       });
     if (calc.total < 70)
       list.push({
-        icon: "📊",
+        icon: BarChart3,
         title: "Book a Workforce Optimization Analysis",
         desc: "Organizations scoring below 70 are typically overspending 20–40% on labor costs. A tailored strategy can begin recovering this within 90 days.",
       });
     if (!list.length)
       list.push({
-        icon: "✅",
+        icon: ShieldCheck,
         title: "Maintain Your Strong Foundation",
         desc: "Your score reflects solid workforce management. Focus on continuous monitoring and proactive retention programs to sustain this advantage.",
       });
@@ -1047,28 +1074,32 @@ const Assessment = () => {
                       [
                         {
                           l: "Low",
-                          emoji: "🟢",
+                          Icon: ShieldCheck,
+                          iconColor: "text-emerald-600",
                           cls: "emerald",
                           headline: "Low Risk",
                           desc: "Our staffing levels are stable, overtime is minimal, and our team is generally not overworked.",
                         },
                         {
                           l: "Moderate",
-                          emoji: "🟡",
+                          Icon: AlertTriangle,
+                          iconColor: "text-accent",
                           cls: "accent",
                           headline: "Moderate Risk",
                           desc: "We experience occasional staffing gaps or overtime, and some signs of fatigue are present.",
                         },
                         {
                           l: "High",
-                          emoji: "🟠",
+                          Icon: ShieldAlert,
+                          iconColor: "text-orange-600",
                           cls: "orange",
                           headline: "High Risk",
                           desc: "Staffing shortages and overtime are frequent, and our team is often stretched thin.",
                         },
                         {
                           l: "Severe",
-                          emoji: "🔴",
+                          Icon: AlertOctagon,
+                          iconColor: "text-destructive",
                           cls: "destructive",
                           headline: "Severe Risk",
                           desc: "We are consistently understaffed, relying heavily on overtime or agency staff, and burnout is clearly impacting our team.",
@@ -1097,7 +1128,7 @@ const Assessment = () => {
                           }`}
                         >
                           <div className="flex items-center gap-2 text-sm font-semibold">
-                            <span>{b.emoji}</span>
+                            <b.Icon size={18} strokeWidth={1.75} className={b.iconColor} />
                             <span>{b.headline}</span>
                           </div>
                           <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
@@ -1110,7 +1141,7 @@ const Assessment = () => {
                 </QuestionCard>
 
                 <QuestionCard
-                  num="💰"
+                  num={<DollarSign size={16} strokeWidth={1.75} />}
                   title="Financial Impact Summary"
                   description="Your estimated annual financial exposure from staffing instability."
                 >
@@ -1127,7 +1158,7 @@ const Assessment = () => {
                         value={fmt$(calc.agencyAnnual)}
                       />
                       <FinRow
-                        label="⚠️ Estimated 3-Year Loss"
+                        label="Estimated 3-Year Loss"
                         sub="If trends continue"
                         value={fmt$(calc.threeYearLoss)}
                         emphasis
@@ -1135,8 +1166,9 @@ const Assessment = () => {
                       {calc.savings != null && calc.savings > 0 && (
                         <div className="flex items-center justify-between rounded-2xl border border-emerald-500/30 bg-emerald-50 px-5 py-4">
                           <div>
-                            <div className="text-sm text-emerald-900">
-                              💚 Projected Savings
+                            <div className="flex items-center gap-2 text-sm text-emerald-900">
+                              <TrendingUp size={16} strokeWidth={1.75} className="text-emerald-600" />
+                              <span>Projected Savings</span>
                             </div>
                             <div className="text-xs text-emerald-700">
                               With targeted retention improvement
@@ -1269,8 +1301,11 @@ const Assessment = () => {
 
                 {/* Report */}
                 <div className="mt-10">
-                  <h3 className="mb-4 border-b pb-3 font-serif text-2xl normal-case tracking-normal">
-                    📋 Nurse Workforce Diagnostic Report
+                  <h3 className="mb-4 flex items-center gap-3 border-b pb-3 font-serif text-2xl normal-case tracking-normal">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-accent/30 bg-accent/10 text-accent">
+                      <ClipboardList size={18} strokeWidth={1.75} />
+                    </span>
+                    Nurse Workforce Diagnostic Report
                   </h3>
                   <div className="grid gap-3 md:grid-cols-2">
                     <MetricItem
@@ -1321,8 +1356,11 @@ const Assessment = () => {
                 </div>
 
                 <div className="mt-10">
-                  <h3 className="mb-4 border-b pb-3 font-serif text-2xl normal-case tracking-normal">
-                    💰 Financial Impact Analysis
+                  <h3 className="mb-4 flex items-center gap-3 border-b pb-3 font-serif text-2xl normal-case tracking-normal">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-accent/30 bg-accent/10 text-accent">
+                      <DollarSign size={18} strokeWidth={1.75} />
+                    </span>
+                    Financial Impact Analysis
                   </h3>
                   {calc.annualLoss > 0 ? (
                     <div className="space-y-3">
@@ -1339,7 +1377,7 @@ const Assessment = () => {
                         />
                       )}
                       <FinRow
-                        label="🔴 Estimated Annual Loss"
+                        label="Estimated Annual Loss"
                         value={fmt$(calc.annualLoss)}
                         emphasis
                       />
@@ -1352,8 +1390,9 @@ const Assessment = () => {
                       {calc.savings != null && calc.savings > 0 && (
                         <div className="mt-4 flex items-center justify-between rounded-2xl border border-emerald-500/30 bg-emerald-50 px-5 py-4">
                           <div>
-                            <div className="text-sm text-emerald-900">
-                              💚 Potential Annual Savings
+                            <div className="flex items-center gap-2 text-sm text-emerald-900">
+                              <TrendingUp size={16} strokeWidth={1.75} className="text-emerald-600" />
+                              <span>Potential Annual Savings</span>
                             </div>
                             <div className="text-xs text-emerald-700">
                               With tailored retention intervention
@@ -1373,21 +1412,29 @@ const Assessment = () => {
                 </div>
 
                 <div className="mt-10">
-                  <h3 className="mb-4 border-b pb-3 font-serif text-2xl normal-case tracking-normal">
-                    🛠 Strategic Recommendations
+                  <h3 className="mb-4 flex items-center gap-3 border-b pb-3 font-serif text-2xl normal-case tracking-normal">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-accent/30 bg-accent/10 text-accent">
+                      <Wrench size={18} strokeWidth={1.75} />
+                    </span>
+                    Strategic Recommendations
                   </h3>
                   <ul className="divide-y divide-border">
-                    {recs.map((r, i) => (
-                      <li key={i} className="flex gap-3 py-3">
-                        <span className="text-base">{r.icon}</span>
-                        <div>
-                          <strong className="text-foreground">{r.title}</strong>
-                          <p className="mt-0.5 text-sm leading-relaxed text-muted-foreground">
-                            {r.desc}
-                          </p>
-                        </div>
-                      </li>
-                    ))}
+                    {recs.map((r, i) => {
+                      const RecIcon = r.icon;
+                      return (
+                        <li key={i} className="flex gap-4 py-4">
+                          <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg border border-accent/30 bg-accent/10 text-accent">
+                            <RecIcon size={18} strokeWidth={1.75} />
+                          </span>
+                          <div>
+                            <strong className="text-foreground">{r.title}</strong>
+                            <p className="mt-0.5 text-sm leading-relaxed text-muted-foreground">
+                              {r.desc}
+                            </p>
+                          </div>
+                        </li>
+                      );
+                    })}
                   </ul>
                 </div>
 
