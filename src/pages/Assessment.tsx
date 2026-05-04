@@ -17,9 +17,14 @@ import { Link } from "react-router-dom";
 /* ---------------- Types ---------------- */
 
 type InsightTone = "red" | "amber" | "green";
-type BurnoutLevel = "Low" | "Moderate" | "High" | "Critical";
+type BurnoutLevel = "Low" | "Moderate" | "High" | "Severe";
 
 type FormState = {
+  // Section 0 — About you
+  orgName: string;
+  position: string;
+  fullName: string;
+  email: string;
   // Section 1
   startNurses: string;
   endNurses: string;
@@ -44,6 +49,10 @@ type FormState = {
 };
 
 const initialState: FormState = {
+  orgName: "",
+  position: "",
+  fullName: "",
+  email: "",
   startNurses: "",
   endNurses: "",
   newHires: "",
@@ -171,7 +180,7 @@ const QuestionCard = ({
 const SECTIONS = 4;
 
 const Assessment = () => {
-  const [section, setSection] = useState(1);
+  const [section, setSection] = useState(0);
   const [f, setF] = useState<FormState>(initialState);
 
   const set = (key: keyof FormState, value: string) =>
@@ -407,12 +416,12 @@ const Assessment = () => {
         };
 
   const burnoutMsg: Record<BurnoutLevel, string> = {
-    Low: "✅ Low risk. Your data shows a sustainable workload — maintain current practices.",
+    Low: "✅ Low risk. Staffing levels are stable, overtime is minimal, and your team is generally not overworked.",
     Moderate:
-      "⚠️ Moderate risk. Burnout is a lagging indicator; address workload drivers before they escalate.",
-    High: "🟠 High risk. Burnout is actively reducing quality of care and accelerating turnover. Intervention recommended.",
-    Critical:
-      "🔴 Critical. Your team is at immediate risk of cascading resignations. This requires urgent, structural intervention.",
+      "⚠️ Moderate risk. You experience occasional staffing gaps or overtime, with some signs of fatigue beginning to surface.",
+    High: "🟠 High risk. Staffing shortages and overtime are frequent — your team is often stretched thin.",
+    Severe:
+      "🔴 Severe risk. Consistently understaffed, heavy reliance on overtime or agency staff, and burnout is clearly impacting your team.",
   };
 
   /* ---- Score appearance ---- */
@@ -475,7 +484,7 @@ const Assessment = () => {
         title: "Reduce Agency Reliance",
         desc: "Constant agency use is masking deeper retention issues while inflating costs. Reduce dependency through tailored retention incentives.",
       });
-    if (f.burnout === "High" || f.burnout === "Critical")
+    if (f.burnout === "High" || f.burnout === "Severe")
       list.push({
         icon: "❤️",
         title: "Address Burnout Drivers Urgently",
@@ -502,7 +511,12 @@ const Assessment = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const progress = ((section - 1) / (SECTIONS - 1)) * 100;
+  const progress = (section / SECTIONS) * 100;
+  const introValid =
+    f.orgName.trim() !== "" &&
+    f.position.trim() !== "" &&
+    f.fullName.trim() !== "" &&
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email.trim());
 
   /* ---------------- Render ---------------- */
   return (
@@ -536,6 +550,78 @@ const Assessment = () => {
           </div>
 
           <AnimatePresence mode="wait">
+            {/* SECTION 0 — About You */}
+            {section === 0 && (
+              <motion.div
+                key="s0"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.4 }}
+              >
+                <div className="mb-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
+                  Get Started
+                </div>
+                <h2 className="mb-2 text-3xl md:text-4xl">
+                  Tell Us About You
+                </h2>
+                <p className="mb-9 max-w-xl text-muted-foreground">
+                  We use this information to personalize your Staffing Stability
+                  Report. All fields are required.
+                </p>
+
+                <div className="seraphyn-card mb-6 space-y-5">
+                  <Field label="Organization Name">
+                    <Input
+                      type="text"
+                      placeholder="e.g. Sunrise Health System"
+                      value={f.orgName}
+                      onChange={(e) => set("orgName", e.target.value)}
+                    />
+                  </Field>
+                  <Field label="Your Position at the Organization">
+                    <Input
+                      type="text"
+                      placeholder="e.g. Chief Nursing Officer"
+                      value={f.position}
+                      onChange={(e) => set("position", e.target.value)}
+                    />
+                  </Field>
+                  <Field label="Full Name">
+                    <Input
+                      type="text"
+                      placeholder="e.g. Jane Doe"
+                      value={f.fullName}
+                      onChange={(e) => set("fullName", e.target.value)}
+                    />
+                  </Field>
+                  <Field label="Email Address">
+                    <Input
+                      type="email"
+                      placeholder="you@organization.com"
+                      value={f.email}
+                      onChange={(e) => set("email", e.target.value)}
+                    />
+                  </Field>
+                </div>
+
+                <div className="mt-8 flex items-center justify-between">
+                  <p className="text-xs text-muted-foreground">
+                    {introValid
+                      ? "You're all set."
+                      : "Please complete all fields to continue."}
+                  </p>
+                  <Button
+                    onClick={() => goTo(1)}
+                    size="lg"
+                    disabled={!introValid}
+                  >
+                    Begin Assessment <ArrowRight className="ml-1 h-4 w-4" />
+                  </Button>
+                </div>
+              </motion.div>
+            )}
+
             {/* SECTION 1 */}
             {section === 1 && (
               <motion.div
@@ -559,10 +645,10 @@ const Assessment = () => {
                 <QuestionCard
                   num="01"
                   title="Nurse Retention Rate"
-                  description="How many nurses are staying vs. leaving — your foundation metric for stability."
+                  description="How many nurses are staying vs. leaving — your foundation metric for stability. Use a 12-month period (e.g. last calendar year)."
                 >
                   <div className="grid gap-4 md:grid-cols-3">
-                    <Field label="Starting Nurses">
+                    <Field label="Starting Nurses (at the beginning of the year)">
                       <Input
                         type="number"
                         placeholder="e.g. 120"
@@ -570,7 +656,7 @@ const Assessment = () => {
                         onChange={(e) => set("startNurses", e.target.value)}
                       />
                     </Field>
-                    <Field label="Ending Nurses">
+                    <Field label="Ending Nurses (at the end of the year)">
                       <Input
                         type="number"
                         placeholder="e.g. 108"
@@ -578,7 +664,7 @@ const Assessment = () => {
                         onChange={(e) => set("endNurses", e.target.value)}
                       />
                     </Field>
-                    <Field label="New Hires During Period">
+                    <Field label="New Hires (during the year)">
                       <Input
                         type="number"
                         placeholder="e.g. 18"
@@ -602,10 +688,10 @@ const Assessment = () => {
                 <QuestionCard
                   num="02"
                   title="Turnover Rate"
-                  description="The percentage of nurses who left. Turnover directly drives financial loss, burnout, and staffing gaps."
+                  description="The percentage of nurses who left throughout the year. Turnover directly drives financial loss, burnout, and staffing gaps."
                 >
                   <div className="grid gap-4 md:grid-cols-2">
-                    <Field label="Nurses Who Left">
+                    <Field label="Nurses Who Left (throughout the year)">
                       <Input
                         type="number"
                         placeholder="e.g. 24"
@@ -613,7 +699,7 @@ const Assessment = () => {
                         onChange={(e) => set("nursesLeft", e.target.value)}
                       />
                     </Field>
-                    <Field label="Total Nurses (average)">
+                    <Field label="Total Nurses (average across the year)">
                       <Input
                         type="number"
                         placeholder="e.g. 120"
@@ -637,16 +723,16 @@ const Assessment = () => {
                 <QuestionCard
                   num="03"
                   title="Annual Cost of Turnover"
-                  description="Most organizations underestimate this by hundreds of thousands. True cost is often 1.5–2× calculated."
+                  description="The estimated cost to recruit, hire, onboard, and train a single replacement nurse — including lost productivity, agency coverage, and orientation time. Industry research places this at 1.5–2× a nurse's annual salary."
                 >
                   <div className="grid gap-4 md:grid-cols-2">
-                    <Field label="Cost Per Nurse ($)">
+                    <Field label="Cost to Replace One Nurse ($)">
                       <Select
                         value={f.costPerNurse}
                         onValueChange={(v) => set("costPerNurse", v)}
                       >
                         <SelectTrigger>
-                          <SelectValue placeholder="Select range" />
+                          <SelectValue placeholder="Select estimated range" />
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="40000">
@@ -954,52 +1040,73 @@ const Assessment = () => {
                 <QuestionCard
                   num="09"
                   title="Burnout Risk Index"
-                  description="Burnout shows in data before behavior. It's a financial and safety risk — not just emotional."
+                  description="Based on your current staffing situation, how would you describe your team's level of burnout risk? Think about overtime, staffing shortages, and turnover when answering — choose the option that best reflects your current reality."
                 >
-                  <p className="mb-3 text-sm text-muted-foreground">
-                    Based on your overtime, vacancy, and turnover data — select
-                    your overall burnout risk assessment:
-                  </p>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="grid gap-3">
                     {(
                       [
-                        { l: "Low", emoji: "🟢", cls: "emerald" },
-                        { l: "Moderate", emoji: "🟡", cls: "accent" },
-                        { l: "High", emoji: "🟠", cls: "orange" },
-                        { l: "Critical", emoji: "🔴", cls: "destructive" },
+                        {
+                          l: "Low",
+                          emoji: "🟢",
+                          cls: "emerald",
+                          headline: "Low Risk",
+                          desc: "Our staffing levels are stable, overtime is minimal, and our team is generally not overworked.",
+                        },
+                        {
+                          l: "Moderate",
+                          emoji: "🟡",
+                          cls: "accent",
+                          headline: "Moderate Risk",
+                          desc: "We experience occasional staffing gaps or overtime, and some signs of fatigue are present.",
+                        },
+                        {
+                          l: "High",
+                          emoji: "🟠",
+                          cls: "orange",
+                          headline: "High Risk",
+                          desc: "Staffing shortages and overtime are frequent, and our team is often stretched thin.",
+                        },
+                        {
+                          l: "Severe",
+                          emoji: "🔴",
+                          cls: "destructive",
+                          headline: "Severe Risk",
+                          desc: "We are consistently understaffed, relying heavily on overtime or agency staff, and burnout is clearly impacting our team.",
+                        },
                       ] as const
                     ).map((b) => {
                       const selected = f.burnout === b.l;
                       const colorMap: Record<string, string> = {
                         emerald:
-                          "border-emerald-500 bg-emerald-50 text-emerald-700",
-                        accent: "border-accent bg-accent/15 text-accent",
+                          "border-emerald-500 bg-emerald-50 text-emerald-900",
+                        accent: "border-accent bg-accent/10 text-foreground",
                         orange:
-                          "border-orange-500 bg-orange-50 text-orange-700",
+                          "border-orange-500 bg-orange-50 text-orange-900",
                         destructive:
-                          "border-destructive bg-destructive/10 text-destructive",
+                          "border-destructive bg-destructive/10 text-foreground",
                       };
                       return (
                         <button
                           key={b.l}
                           type="button"
                           onClick={() => set("burnout", b.l)}
-                          className={`rounded-full border px-5 py-2 text-sm font-medium transition-all ${
+                          className={`rounded-2xl border px-5 py-4 text-left transition-all ${
                             selected
                               ? colorMap[b.cls]
-                              : "border-border text-muted-foreground hover:border-foreground/20"
+                              : "border-border bg-background hover:border-foreground/20"
                           }`}
                         >
-                          {b.emoji} {b.l}
+                          <div className="flex items-center gap-2 text-sm font-semibold">
+                            <span>{b.emoji}</span>
+                            <span>{b.headline}</span>
+                          </div>
+                          <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                            {b.desc}
+                          </p>
                         </button>
                       );
                     })}
                   </div>
-                  {f.burnout && (
-                    <p className="mt-4 text-sm text-muted-foreground">
-                      {burnoutMsg[f.burnout]}
-                    </p>
-                  )}
                 </QuestionCard>
 
                 <QuestionCard
@@ -1284,22 +1391,45 @@ const Assessment = () => {
                   </ul>
                 </div>
 
-                {/* CTA */}
-                <div className="mt-10 rounded-3xl border border-accent/30 bg-gradient-to-br from-accent/10 to-primary/5 p-9 text-center print:hidden">
+                {/* CTA — Calendly embed */}
+                <div className="mt-10 rounded-3xl border border-accent/30 bg-gradient-to-br from-accent/10 to-primary/5 p-6 md:p-9 text-center print:hidden">
                   <h3 className="mb-2 font-serif text-2xl normal-case tracking-normal text-foreground">
                     Ready to Recover Your Lost Revenue?
                   </h3>
                   <p className="mx-auto mb-6 max-w-xl text-sm leading-relaxed text-muted-foreground">
-                    You've identified the problem. Now get a tailored strategy
-                    to reduce turnover, stabilize staffing, and recover lost
-                    revenue — built specifically for your organization.
+                    {f.fullName ? `${f.fullName.split(" ")[0]}, you've ` : "You've "}
+                    identified the problem. Book a free strategy call below to
+                    get a tailored plan to reduce turnover, stabilize staffing,
+                    and recover lost revenue at {f.orgName || "your organization"}.
                   </p>
-                  <Button asChild size="lg">
-                    <Link to="/book">
-                      Book Your Free Strategy Call
-                      <ArrowRight className="ml-1 h-4 w-4" />
-                    </Link>
-                  </Button>
+                  <div className="overflow-hidden rounded-2xl border border-border bg-background">
+                    <iframe
+                      src={`https://calendly.com/seraphyncare-info/30min?hide_gdpr_banner=1&name=${encodeURIComponent(
+                        f.fullName
+                      )}&email=${encodeURIComponent(
+                        f.email
+                      )}&a1=${encodeURIComponent(
+                        `${f.position} @ ${f.orgName}`
+                      )}`}
+                      title="Book a strategy call with Seraphyn Care"
+                      width="100%"
+                      height="700"
+                      frameBorder="0"
+                      className="block w-full"
+                    />
+                  </div>
+                  <p className="mt-4 text-xs text-muted-foreground">
+                    Trouble loading the calendar?{" "}
+                    <a
+                      href="https://calendly.com/seraphyncare-info/30min"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="underline"
+                    >
+                      Open in a new tab
+                    </a>
+                    .
+                  </p>
                 </div>
 
                 <div className="mt-8 flex justify-between print:hidden">
