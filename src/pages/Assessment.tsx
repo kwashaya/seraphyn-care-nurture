@@ -1143,7 +1143,7 @@ const Assessment = () => {
                 </QuestionCard>
 
                 <QuestionCard
-                  num="💰"
+                  num={<DollarSign size={16} strokeWidth={1.75} />}
                   title="Financial Impact Summary"
                   description="Your estimated annual financial exposure from staffing instability."
                 >
@@ -1168,8 +1168,9 @@ const Assessment = () => {
                       {calc.savings != null && calc.savings > 0 && (
                         <div className="flex items-center justify-between rounded-2xl border border-emerald-500/30 bg-emerald-50 px-5 py-4">
                           <div>
-                            <div className="text-sm text-emerald-900">
-                              💚 Projected Savings
+                            <div className="flex items-center gap-2 text-sm text-emerald-900">
+                              <TrendingUp size={16} strokeWidth={1.75} className="text-emerald-600" />
+                              <span>Projected Savings</span>
                             </div>
                             <div className="text-xs text-emerald-700">
                               With targeted retention improvement
@@ -1302,8 +1303,11 @@ const Assessment = () => {
 
                 {/* Report */}
                 <div className="mt-10">
-                  <h3 className="mb-4 border-b pb-3 font-serif text-2xl normal-case tracking-normal">
-                    📋 Nurse Workforce Diagnostic Report
+                  <h3 className="mb-4 flex items-center gap-3 border-b pb-3 font-serif text-2xl normal-case tracking-normal">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-accent/30 bg-accent/10 text-accent">
+                      <ClipboardList size={18} strokeWidth={1.75} />
+                    </span>
+                    Nurse Workforce Diagnostic Report
                   </h3>
                   <div className="grid gap-3 md:grid-cols-2">
                     <MetricItem
@@ -1354,8 +1358,11 @@ const Assessment = () => {
                 </div>
 
                 <div className="mt-10">
-                  <h3 className="mb-4 border-b pb-3 font-serif text-2xl normal-case tracking-normal">
-                    💰 Financial Impact Analysis
+                  <h3 className="mb-4 flex items-center gap-3 border-b pb-3 font-serif text-2xl normal-case tracking-normal">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-accent/30 bg-accent/10 text-accent">
+                      <DollarSign size={18} strokeWidth={1.75} />
+                    </span>
+                    Financial Impact Analysis
                   </h3>
                   {calc.annualLoss > 0 ? (
                     <div className="space-y-3">
@@ -1385,8 +1392,9 @@ const Assessment = () => {
                       {calc.savings != null && calc.savings > 0 && (
                         <div className="mt-4 flex items-center justify-between rounded-2xl border border-emerald-500/30 bg-emerald-50 px-5 py-4">
                           <div>
-                            <div className="text-sm text-emerald-900">
-                              💚 Potential Annual Savings
+                            <div className="flex items-center gap-2 text-sm text-emerald-900">
+                              <TrendingUp size={16} strokeWidth={1.75} className="text-emerald-600" />
+                              <span>Potential Annual Savings</span>
                             </div>
                             <div className="text-xs text-emerald-700">
                               With tailored retention intervention
@@ -1406,21 +1414,29 @@ const Assessment = () => {
                 </div>
 
                 <div className="mt-10">
-                  <h3 className="mb-4 border-b pb-3 font-serif text-2xl normal-case tracking-normal">
-                    🛠 Strategic Recommendations
+                  <h3 className="mb-4 flex items-center gap-3 border-b pb-3 font-serif text-2xl normal-case tracking-normal">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-accent/30 bg-accent/10 text-accent">
+                      <Wrench size={18} strokeWidth={1.75} />
+                    </span>
+                    Strategic Recommendations
                   </h3>
                   <ul className="divide-y divide-border">
-                    {recs.map((r, i) => (
-                      <li key={i} className="flex gap-3 py-3">
-                        <span className="text-base">{r.icon}</span>
-                        <div>
-                          <strong className="text-foreground">{r.title}</strong>
-                          <p className="mt-0.5 text-sm leading-relaxed text-muted-foreground">
-                            {r.desc}
-                          </p>
-                        </div>
-                      </li>
-                    ))}
+                    {recs.map((r, i) => {
+                      const RecIcon = r.icon;
+                      return (
+                        <li key={i} className="flex gap-4 py-4">
+                          <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg border border-accent/30 bg-accent/10 text-accent">
+                            <RecIcon size={18} strokeWidth={1.75} />
+                          </span>
+                          <div>
+                            <strong className="text-foreground">{r.title}</strong>
+                            <p className="mt-0.5 text-sm leading-relaxed text-muted-foreground">
+                              {r.desc}
+                            </p>
+                          </div>
+                        </li>
+                      );
+                    })}
                   </ul>
                 </div>
 
