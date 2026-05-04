@@ -1076,28 +1076,32 @@ const Assessment = () => {
                       [
                         {
                           l: "Low",
-                          emoji: "🟢",
+                          Icon: ShieldCheck,
+                          iconColor: "text-emerald-600",
                           cls: "emerald",
                           headline: "Low Risk",
                           desc: "Our staffing levels are stable, overtime is minimal, and our team is generally not overworked.",
                         },
                         {
                           l: "Moderate",
-                          emoji: "🟡",
+                          Icon: AlertTriangle,
+                          iconColor: "text-accent",
                           cls: "accent",
                           headline: "Moderate Risk",
                           desc: "We experience occasional staffing gaps or overtime, and some signs of fatigue are present.",
                         },
                         {
                           l: "High",
-                          emoji: "🟠",
+                          Icon: ShieldAlert,
+                          iconColor: "text-orange-600",
                           cls: "orange",
                           headline: "High Risk",
                           desc: "Staffing shortages and overtime are frequent, and our team is often stretched thin.",
                         },
                         {
                           l: "Severe",
-                          emoji: "🔴",
+                          Icon: AlertOctagon,
+                          iconColor: "text-destructive",
                           cls: "destructive",
                           headline: "Severe Risk",
                           desc: "We are consistently understaffed, relying heavily on overtime or agency staff, and burnout is clearly impacting our team.",
@@ -1126,7 +1130,7 @@ const Assessment = () => {
                           }`}
                         >
                           <div className="flex items-center gap-2 text-sm font-semibold">
-                            <span>{b.emoji}</span>
+                            <b.Icon size={18} strokeWidth={1.75} className={b.iconColor} />
                             <span>{b.headline}</span>
                           </div>
                           <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
