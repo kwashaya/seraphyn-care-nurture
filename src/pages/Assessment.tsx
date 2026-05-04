@@ -550,6 +550,78 @@ const Assessment = () => {
           </div>
 
           <AnimatePresence mode="wait">
+            {/* SECTION 0 — About You */}
+            {section === 0 && (
+              <motion.div
+                key="s0"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.4 }}
+              >
+                <div className="mb-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
+                  Get Started
+                </div>
+                <h2 className="mb-2 text-3xl md:text-4xl">
+                  Tell Us About You
+                </h2>
+                <p className="mb-9 max-w-xl text-muted-foreground">
+                  We use this information to personalize your Staffing Stability
+                  Report. All fields are required.
+                </p>
+
+                <div className="seraphyn-card mb-6 space-y-5">
+                  <Field label="Organization Name">
+                    <Input
+                      type="text"
+                      placeholder="e.g. Sunrise Health System"
+                      value={f.orgName}
+                      onChange={(e) => set("orgName", e.target.value)}
+                    />
+                  </Field>
+                  <Field label="Your Position at the Organization">
+                    <Input
+                      type="text"
+                      placeholder="e.g. Chief Nursing Officer"
+                      value={f.position}
+                      onChange={(e) => set("position", e.target.value)}
+                    />
+                  </Field>
+                  <Field label="Full Name">
+                    <Input
+                      type="text"
+                      placeholder="e.g. Jane Doe"
+                      value={f.fullName}
+                      onChange={(e) => set("fullName", e.target.value)}
+                    />
+                  </Field>
+                  <Field label="Email Address">
+                    <Input
+                      type="email"
+                      placeholder="you@organization.com"
+                      value={f.email}
+                      onChange={(e) => set("email", e.target.value)}
+                    />
+                  </Field>
+                </div>
+
+                <div className="mt-8 flex items-center justify-between">
+                  <p className="text-xs text-muted-foreground">
+                    {introValid
+                      ? "You're all set."
+                      : "Please complete all fields to continue."}
+                  </p>
+                  <Button
+                    onClick={() => goTo(1)}
+                    size="lg"
+                    disabled={!introValid}
+                  >
+                    Begin Assessment <ArrowRight className="ml-1 h-4 w-4" />
+                  </Button>
+                </div>
+              </motion.div>
+            )}
+
             {/* SECTION 1 */}
             {section === 1 && (
               <motion.div
