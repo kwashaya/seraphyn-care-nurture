@@ -511,7 +511,12 @@ const Assessment = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const progress = ((section - 1) / (SECTIONS - 1)) * 100;
+  const progress = (section / SECTIONS) * 100;
+  const introValid =
+    f.orgName.trim() !== "" &&
+    f.position.trim() !== "" &&
+    f.fullName.trim() !== "" &&
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email.trim());
 
   /* ---------------- Render ---------------- */
   return (
