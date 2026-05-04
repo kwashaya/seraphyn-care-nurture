@@ -49,6 +49,10 @@ type FormState = {
 };
 
 const initialState: FormState = {
+  orgName: "",
+  position: "",
+  fullName: "",
+  email: "",
   startNurses: "",
   endNurses: "",
   newHires: "",
