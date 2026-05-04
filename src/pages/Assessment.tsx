@@ -688,10 +688,10 @@ const Assessment = () => {
                 <QuestionCard
                   num="02"
                   title="Turnover Rate"
-                  description="The percentage of nurses who left. Turnover directly drives financial loss, burnout, and staffing gaps."
+                  description="The percentage of nurses who left throughout the year. Turnover directly drives financial loss, burnout, and staffing gaps."
                 >
                   <div className="grid gap-4 md:grid-cols-2">
-                    <Field label="Nurses Who Left">
+                    <Field label="Nurses Who Left (throughout the year)">
                       <Input
                         type="number"
                         placeholder="e.g. 24"
@@ -699,7 +699,7 @@ const Assessment = () => {
                         onChange={(e) => set("nursesLeft", e.target.value)}
                       />
                     </Field>
-                    <Field label="Total Nurses (average)">
+                    <Field label="Total Nurses (average across the year)">
                       <Input
                         type="number"
                         placeholder="e.g. 120"
@@ -723,16 +723,16 @@ const Assessment = () => {
                 <QuestionCard
                   num="03"
                   title="Annual Cost of Turnover"
-                  description="Most organizations underestimate this by hundreds of thousands. True cost is often 1.5–2× calculated."
+                  description="The estimated cost to recruit, hire, onboard, and train a single replacement nurse — including lost productivity, agency coverage, and orientation time. Industry research places this at 1.5–2× a nurse's annual salary."
                 >
                   <div className="grid gap-4 md:grid-cols-2">
-                    <Field label="Cost Per Nurse ($)">
+                    <Field label="Cost to Replace One Nurse ($)">
                       <Select
                         value={f.costPerNurse}
                         onValueChange={(v) => set("costPerNurse", v)}
                       >
                         <SelectTrigger>
-                          <SelectValue placeholder="Select range" />
+                          <SelectValue placeholder="Select estimated range" />
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="40000">
