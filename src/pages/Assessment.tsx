@@ -645,10 +645,10 @@ const Assessment = () => {
                 <QuestionCard
                   num="01"
                   title="Nurse Retention Rate"
-                  description="How many nurses are staying vs. leaving — your foundation metric for stability."
+                  description="How many nurses are staying vs. leaving — your foundation metric for stability. Use a 12-month period (e.g. last calendar year)."
                 >
                   <div className="grid gap-4 md:grid-cols-3">
-                    <Field label="Starting Nurses">
+                    <Field label="Starting Nurses (at the beginning of the year)">
                       <Input
                         type="number"
                         placeholder="e.g. 120"
@@ -656,7 +656,7 @@ const Assessment = () => {
                         onChange={(e) => set("startNurses", e.target.value)}
                       />
                     </Field>
-                    <Field label="Ending Nurses">
+                    <Field label="Ending Nurses (at the end of the year)">
                       <Input
                         type="number"
                         placeholder="e.g. 108"
@@ -664,7 +664,7 @@ const Assessment = () => {
                         onChange={(e) => set("endNurses", e.target.value)}
                       />
                     </Field>
-                    <Field label="New Hires During Period">
+                    <Field label="New Hires (during the year)">
                       <Input
                         type="number"
                         placeholder="e.g. 18"
