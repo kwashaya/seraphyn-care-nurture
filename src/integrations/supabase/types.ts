@@ -14,7 +14,93 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      assessments: {
+        Row: {
+          created_at: string
+          financial_impact_cents: number | null
+          id: string
+          org_name: string | null
+          overtime_pct: number | null
+          payload: Json
+          retention_rate: number | null
+          risk_level: string | null
+          role: string | null
+          stability_score: number | null
+          turnover_rate: number | null
+          user_id: string
+          vacancy_rate: number | null
+        }
+        Insert: {
+          created_at?: string
+          financial_impact_cents?: number | null
+          id?: string
+          org_name?: string | null
+          overtime_pct?: number | null
+          payload?: Json
+          retention_rate?: number | null
+          risk_level?: string | null
+          role?: string | null
+          stability_score?: number | null
+          turnover_rate?: number | null
+          user_id: string
+          vacancy_rate?: number | null
+        }
+        Update: {
+          created_at?: string
+          financial_impact_cents?: number | null
+          id?: string
+          org_name?: string | null
+          overtime_pct?: number | null
+          payload?: Json
+          retention_rate?: number | null
+          risk_level?: string | null
+          role?: string | null
+          stability_score?: number | null
+          turnover_rate?: number | null
+          user_id?: string
+          vacancy_rate?: number | null
+        }
+        Relationships: []
+      }
+      leads: {
+        Row: {
+          bed_count: number | null
+          created_at: string
+          email: string | null
+          id: string
+          message: string | null
+          name: string | null
+          org_name: string | null
+          role: string | null
+          source: string
+          user_id: string
+        }
+        Insert: {
+          bed_count?: number | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          message?: string | null
+          name?: string | null
+          org_name?: string | null
+          role?: string | null
+          source?: string
+          user_id: string
+        }
+        Update: {
+          bed_count?: number | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          message?: string | null
+          name?: string | null
+          org_name?: string | null
+          role?: string | null
+          source?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
