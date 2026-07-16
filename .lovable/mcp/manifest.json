@@ -1,0 +1,229 @@
+{
+  "version": 1,
+  "sdk_version": "0.22.2",
+  "path": "/functions/v1/mcp",
+  "auth": {
+    "type": "oauth",
+    "issuer": "https://duyxgztajqkyeqihzkvr.supabase.co/auth/v1",
+    "accepted_audiences": [
+      "authenticated"
+    ]
+  },
+  "mcp": {
+    "server": {
+      "name": "seraphyn-care-mcp",
+      "version": "0.1.0",
+      "title": "Seraphyn Care"
+    },
+    "tools": [
+      {
+        "name": "submit_assessment",
+        "title": "Submit Staffing Stability Assessment",
+        "description": "Save a Staffing Stability Assessment result for the signed-in user. Stores retention/turnover/vacancy metrics, stability score, risk level, and projected financial impact.",
+        "annotations": {
+          "readOnlyHint": false,
+          "idempotentHint": false,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "org_name": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Organization name"
+            },
+            "role": {
+              "type": "string",
+              "description": "Submitter's role/title at the organization"
+            },
+            "retention_rate": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "turnover_rate": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "vacancy_rate": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "overtime_pct": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "stability_score": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "risk_level": {
+              "type": "string",
+              "enum": [
+                "low",
+                "moderate",
+                "high",
+                "severe"
+              ]
+            },
+            "financial_impact_usd": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Projected annual financial impact in USD"
+            },
+            "notes": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "org_name"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_my_assessments",
+        "title": "List my assessments",
+        "description": "List Staffing Stability Assessments belonging to the signed-in user, newest first.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "description": "Max rows to return (default 20)"
+            }
+          },
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_assessment",
+        "title": "Get assessment",
+        "description": "Fetch one Staffing Stability Assessment by id. RLS restricts this to the row owner.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uuid",
+              "description": "Assessment id"
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "submit_lead",
+        "title": "Submit lead",
+        "description": "Record a lead-capture entry (book, consulting, staffing, or general inquiry) tied to the signed-in user.",
+        "annotations": {
+          "readOnlyHint": false,
+          "idempotentHint": false,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "source": {
+              "type": "string",
+              "enum": [
+                "book",
+                "consulting",
+                "staffing",
+                "assessment",
+                "general"
+              ],
+              "description": "Which funnel this lead came from"
+            },
+            "name": {
+              "type": "string",
+              "minLength": 1
+            },
+            "email": {
+              "type": "string",
+              "format": "email"
+            },
+            "org_name": {
+              "type": "string"
+            },
+            "role": {
+              "type": "string",
+              "description": "Job title / role"
+            },
+            "bed_count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "message": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "source"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_book_info",
+        "title": "Get book info",
+        "description": "Return information about 'The Million Dollar Nurse: How Nurse Retention Saves Hospitals Millions and Protects Patient Care' by Kundayi Washaya, RN.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_booking_link",
+        "title": "Get strategy-call booking link",
+        "description": "Return the Seraphyn Care free Nurse Retention Strategy Call Calendly link so the user can book a 30-minute call.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
