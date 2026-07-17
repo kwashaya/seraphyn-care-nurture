@@ -40,6 +40,16 @@ const Staffing = () => (
               Browse Nurses
             </Link>
           </div>
+          <div className="mt-16 seraphyn-card p-2 overflow-hidden rounded-2xl">
+            <img
+              src={staffingCommandCenter}
+              alt="Healthcare workforce operations command center with real-time staffing analytics dashboards"
+              width={1920}
+              height={1088}
+              className="w-full rounded-xl object-cover"
+              loading="eager"
+            />
+          </div>
         </motion.div>
       </div>
     </section>
