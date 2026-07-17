@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Layout from "@/components/Layout";
 import SectionHeading from "@/components/SectionHeading";
-import consultingImage from "@/assets/consulting-glass.jpg";
+import consultingImage from "@/assets/consulting-hero.jpg";
 import { Search, Brain, GraduationCap, Headphones } from "lucide-react";
 
 const fadeUp = {
@@ -48,7 +48,7 @@ const Consulting = () => (
             className="rounded-3xl overflow-hidden"
             style={{ boxShadow: "var(--shadow-card)" }}
           >
-            <img src={consultingImage} alt="Abstract glass shapes representing clarity" className="w-full h-full object-cover" />
+            <img src={consultingImage} alt="Senior healthcare consultant presenting workforce analytics to hospital executives in a modern boardroom" className="w-full h-full object-cover" />
           </motion.div>
         </div>
       </div>
