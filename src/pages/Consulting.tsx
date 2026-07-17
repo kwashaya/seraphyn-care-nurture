@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Layout from "@/components/Layout";
 import SectionHeading from "@/components/SectionHeading";
-import consultingImage from "@/assets/consulting-glass.jpg";
+import consultingImage from "@/assets/consulting-hero.jpg";
 import { Search, Brain, GraduationCap, Headphones } from "lucide-react";
 
 const fadeUp = {
