@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import Layout from "@/components/Layout";
 import SectionHeading from "@/components/SectionHeading";
 import { Zap, Brain, DollarSign, Clock, Shield, Users } from "lucide-react";
+import staffingCommandCenter from "@/assets/staffing-command-center.jpg";
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
