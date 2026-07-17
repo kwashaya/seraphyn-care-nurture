@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Layout from "@/components/Layout";
 import SectionHeading from "@/components/SectionHeading";
-import heroImage from "@/assets/hero-hospital.jpg";
+import heroAsset from "@/assets/hero-hospital-new.jpg.asset.json";
+const heroImage = heroAsset.url;
 import { TrendingDown, Users, Heart, Shield, Clock, BarChart3 } from "lucide-react";
 
 const fadeUp = {
