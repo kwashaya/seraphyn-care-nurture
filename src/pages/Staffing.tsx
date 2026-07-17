@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import Layout from "@/components/Layout";
 import SectionHeading from "@/components/SectionHeading";
 import { Zap, Brain, DollarSign, Clock, Shield, Users } from "lucide-react";
+import staffingCommandCenter from "@/assets/staffing-command-center.jpg";
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
@@ -38,6 +39,16 @@ const Staffing = () => (
             <Link to="/for-nurses" className="px-8 py-4 bg-primary text-primary-foreground rounded-lg font-medium tracking-wide transition-all duration-200 hover:brightness-110 active:scale-95">
               Browse Nurses
             </Link>
+          </div>
+          <div className="mt-16 seraphyn-card p-2 overflow-hidden rounded-2xl">
+            <img
+              src={staffingCommandCenter}
+              alt="Healthcare workforce operations command center with real-time staffing analytics dashboards"
+              width={1920}
+              height={1088}
+              className="w-full rounded-xl object-cover"
+              loading="eager"
+            />
           </div>
         </motion.div>
       </div>
