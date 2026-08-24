@@ -195,7 +195,7 @@
       {
         "name": "get_book_info",
         "title": "Get book info",
-        "description": "Return information about 'The Million Dollar Nurse: How Nurse Retention Saves Hospitals Millions and Protects Patient Care' by Kundayi Washaya, RN.",
+        "description": "Return information about 'The Retention Blueprint: How Healthcare Leaders Reduce Turnover, Strengthen Their Workforce, and Save Millions' by Kundayi Washaya, RN.",
         "annotations": {
           "readOnlyHint": true,
           "idempotentHint": true,

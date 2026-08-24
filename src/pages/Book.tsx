@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Layout from "@/components/Layout";
 import SectionHeading from "@/components/SectionHeading";
 import { ArrowRight, BookOpen, DollarSign, Shield, TrendingDown, BarChart3, CheckCircle, Quote, PieChart } from "lucide-react";
-import bookMockup from "@/assets/book-mockup.jpg";
+import bookCover from "@/assets/the-retention-blueprint-cover.jpg.asset.json";
 
 
 const fadeUp = {
@@ -22,7 +22,7 @@ const stats = [
 ];
 
 const learnings = [
-  "The Million Dollar Nurse Turnover Equation—a CFO-ready formula to quantify total turnover cost across direct, indirect, and hidden expense lines",
+  "The Retention Blueprint Turnover Equation—a CFO-ready formula to quantify total turnover cost across direct, indirect, and hidden expense lines",
   "How to eliminate $2–8M in annual travel nurse agency spend through structured retention pipelines",
   "Board-ready ROI models that justify retention investment with 90-day payback projections",
   "Workforce cost optimization frameworks that reduce labor expense ratio by 12–18%",
@@ -72,7 +72,7 @@ const Book = () => {
                 This book shows you exactly where it's hiding on your P&L—and how to recover it.
               </p>
               <p className="mt-6 text-muted-foreground leading-relaxed max-w-[55ch]">
-                <em>The Million Dollar Nurse</em> is the first book to translate the nursing retention crisis into the financial language of the C-suite—with board-ready frameworks, ROI models, and a 90-day implementation roadmap.
+                <em>The Retention Blueprint</em> is the first book to translate the nursing retention crisis into the financial language of the C-suite—with board-ready frameworks, ROI models, and a 90-day implementation roadmap.
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
                 <a href="#buy" className="px-8 py-4 bg-accent text-accent-foreground rounded-lg font-medium tracking-wide transition-all duration-200 hover:brightness-95 active:scale-95 inline-flex items-center gap-2" style={{ boxShadow: "var(--shadow-button)" }}>
@@ -85,7 +85,7 @@ const Book = () => {
             </motion.div>
             <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.2 }}>
               <div className="relative">
-                <img src={bookMockup} alt="The Million Dollar Nurse book by Kundayi Washaya" className="rounded-2xl w-full max-w-lg mx-auto" style={{ boxShadow: "var(--shadow-card-hover)" }} />
+                <img src={bookCover.url} alt="The Retention Blueprint book by Kundayi Washaya" className="rounded-2xl w-full max-w-lg mx-auto" style={{ boxShadow: "var(--shadow-card-hover)" }} />
                 <div className="absolute -bottom-6 -left-6 seraphyn-card py-4 px-6 hidden md:block">
                   <p className="font-mono-tabular text-2xl font-semibold text-accent">5–10×</p>
                   <p className="text-xs text-muted-foreground mt-1">Documented ROI from retention strategies</p>
@@ -167,7 +167,7 @@ const Book = () => {
             </motion.div>
             <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.15 }} className="seraphyn-card bg-primary text-primary-foreground">
               <h3 className="text-xs mb-4 text-primary-foreground/60">FEATURED FRAMEWORK</h3>
-              <h2 className="font-serif text-3xl text-primary-foreground">The Million Dollar Nurse Turnover Equation</h2>
+              <h2 className="font-serif text-3xl text-primary-foreground">The Retention Blueprint Turnover Equation</h2>
               <p className="mt-4 text-primary-foreground/80 text-sm leading-relaxed">
                 A proprietary financial model that quantifies the true cost of nurse turnover across 14 direct, indirect, and hidden expense categories—including productivity loss, quality metric penalties, and institutional knowledge depreciation. Designed to plug directly into board presentations and capital budget requests.
               </p>
