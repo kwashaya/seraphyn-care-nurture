@@ -109,6 +109,9 @@ const ForNurses = () => (
                 src={nursesImage}
                 alt="A team of professional nurses in a modern hospital"
                 className="rounded-lg w-full h-auto object-cover"
+                loading="lazy"
+                width={1600}
+                height={912}
               />
             </div>
           </motion.div>
