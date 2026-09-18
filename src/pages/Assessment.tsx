@@ -32,6 +32,7 @@ import {
   TrendingUp,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { ExecIntro, ExecOutro } from "@/components/assessment/ExecSections";
 
 /* ---------------- Types ---------------- */
 
