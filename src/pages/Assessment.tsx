@@ -32,6 +32,7 @@ import {
   TrendingUp,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { ExecIntro, ExecOutro } from "@/components/assessment/ExecSections";
 
 /* ---------------- Types ---------------- */
 
@@ -548,22 +549,25 @@ const Assessment = () => {
   /* ---------------- Render ---------------- */
   return (
     <Layout>
-      <section className="seraphyn-section seraphyn-gradient-bg">
+      {section === 0 && <ExecIntro />}
+      <section
+        id="assessment"
+        className="seraphyn-section seraphyn-gradient-bg scroll-mt-20"
+      >
         <div className="mx-auto max-w-3xl">
           {/* Header */}
           <div className="mb-12 text-center">
             <span className="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
               <Sparkles className="h-3 w-3" /> Seraphyn Care
             </span>
-            <h1 className="mt-6 text-5xl md:text-6xl">
-              Staffing Stability
-              <br />
-              Assessment™
-            </h1>
+            <p className="mt-6 font-serif text-4xl text-foreground md:text-5xl">
+              Staffing Stability Assessment™
+            </p>
             <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-muted-foreground">
               A data-driven diagnostic to identify hidden financial loss,
               staffing instability, and retention breakdowns — in minutes.
             </p>
+
 
             {/* Progress */}
             <div className="mt-10 h-1.5 w-full overflow-hidden rounded-full bg-muted">
@@ -1439,7 +1443,7 @@ const Assessment = () => {
                 </div>
 
                 {/* CTA — Calendly embed */}
-                <div className="mt-10 rounded-3xl border border-accent/30 bg-gradient-to-br from-accent/10 to-primary/5 p-6 md:p-9 text-center print:hidden">
+                <div id="book-call" className="mt-10 scroll-mt-20 rounded-3xl border border-accent/30 bg-gradient-to-br from-accent/10 to-primary/5 p-6 md:p-9 text-center print:hidden">
                   <h3 className="mb-2 font-serif text-2xl normal-case tracking-normal text-foreground">
                     Ready to Recover Your Lost Revenue?
                   </h3>
@@ -1490,6 +1494,8 @@ const Assessment = () => {
                     <Printer className="mr-1 h-4 w-4" /> Print Report
                   </Button>
                 </div>
+
+                <ExecOutro />
               </motion.div>
             )}
           </AnimatePresence>

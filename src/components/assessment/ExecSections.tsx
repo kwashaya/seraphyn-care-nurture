@@ -106,7 +106,7 @@ export const ExecIntro = () => (
         height={1088}
       />
       <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-primary/40" />
-      <div className="seraphyn-container relative py-20 md:py-28">
+      <div className="seraphyn-container relative px-6 py-24 md:py-32">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
