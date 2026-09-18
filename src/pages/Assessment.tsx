@@ -1443,7 +1443,7 @@ const Assessment = () => {
                 </div>
 
                 {/* CTA — Calendly embed */}
-                <div className="mt-10 rounded-3xl border border-accent/30 bg-gradient-to-br from-accent/10 to-primary/5 p-6 md:p-9 text-center print:hidden">
+                <div id="book-call" className="mt-10 scroll-mt-20 rounded-3xl border border-accent/30 bg-gradient-to-br from-accent/10 to-primary/5 p-6 md:p-9 text-center print:hidden">
                   <h3 className="mb-2 font-serif text-2xl normal-case tracking-normal text-foreground">
                     Ready to Recover Your Lost Revenue?
                   </h3>
@@ -1494,6 +1494,8 @@ const Assessment = () => {
                     <Printer className="mr-1 h-4 w-4" /> Print Report
                   </Button>
                 </div>
+
+                <ExecOutro />
               </motion.div>
             )}
           </AnimatePresence>
