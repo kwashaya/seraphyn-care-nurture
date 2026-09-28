@@ -24,7 +24,7 @@ const Navbar = () => {
       <div className="seraphyn-container flex items-center justify-between h-20 px-6">
         <Link to="/" className="flex items-center">
           <img
-            src={seraphynLogo.url}
+            src={seraphynLogo}
             alt="Seraphyn Care Solutions"
             className="h-12 md:h-14 w-auto"
           />

@@ -9,7 +9,7 @@ const Footer = () => (
       <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
         <div className="md:col-span-1">
           <img
-            src={seraphynLogo.url}
+            src={seraphynLogo}
             alt="Seraphyn Care Solutions"
             className="h-16 w-auto"
           />
