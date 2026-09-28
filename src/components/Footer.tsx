@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Facebook, Instagram, Twitter, Linkedin } from "lucide-react";
-import seraphynLogo from "@/assets/seraphyn-logo.png.asset.json";
+import seraphynLogo from "@/assets/seraphyn-logo.png";
 
 
 const Footer = () => (
