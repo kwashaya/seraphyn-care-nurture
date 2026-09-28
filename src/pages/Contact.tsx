@@ -73,7 +73,7 @@ const Contact = () => {
               <div className="mt-6 pt-6 border-t border-border flex flex-col sm:flex-row gap-4 text-sm text-muted-foreground">
                 <span>info@seraphyncare.com</span>
                 <span className="hidden sm:inline">·</span>
-                <span>(800) 555-0199</span>
+                <a href="tel:+15622700860" className="hover:text-foreground transition-colors">(562) 270-0860</a>
               </div>
             </motion.div>
           )}
