@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Facebook, Instagram, Twitter, Linkedin } from "lucide-react";
+import seraphynLogo from "@/assets/seraphyn-logo.png";
 
 
 const Footer = () => (
@@ -7,7 +8,11 @@ const Footer = () => (
     <div className="seraphyn-container px-6 py-16">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
         <div className="md:col-span-1">
-          <span className="text-lg font-semibold text-foreground">Seraphyn Care</span>
+          <img
+            src={seraphynLogo.url}
+            alt="Seraphyn Care Solutions"
+            className="h-16 w-auto"
+          />
           <p className="mt-4 text-sm text-muted-foreground max-w-[30ch] leading-relaxed">
             Sustainable systems for the future of care.
           </p>
