@@ -522,7 +522,7 @@ const Assessment = () => {
       list.push({
         icon: BarChart3,
         title: "Book a Workforce Optimization Analysis",
-        desc: "Organizations scoring below 70 are typically overspending 20–40% on labor costs. A tailored strategy can begin recovering this within 90 days.",
+        desc: "Lower scores often point to avoidable premium labor spend. A tailored strategy can begin recovering those costs.",
       });
     if (!list.length)
       list.push({

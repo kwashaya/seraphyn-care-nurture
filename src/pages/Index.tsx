@@ -13,17 +13,17 @@ const fadeUp = {
 };
 
 const stats = [
-  { value: "$4.2M", label: "Average annual savings per system", icon: TrendingDown },
-  { value: "14.2%", label: "Reduction in turnover costs", icon: BarChart3 },
-  { value: "89%", label: "Nurse retention rate", icon: Heart },
-  { value: "14 min", label: "Average time to fill a shift", icon: Clock },
+  { value: "Rising Costs", label: "Agency premiums and overtime quietly inflate labor budgets", icon: TrendingDown },
+  { value: "Turnover", label: "Every resignation restarts a costly recruitment and training cycle", icon: BarChart3 },
+  { value: "Vacancies", label: "Unfilled shifts strain teams and compromise continuity of care", icon: Clock },
+  { value: "Burnout", label: "Exhausted nurses disengage — and eventually leave", icon: Heart },
 ];
 
 const benefits = [
   {
     icon: TrendingDown,
     title: "Reduce Agency Costs",
-    description: "Eliminate expensive travel nurse reliance with a sustainable, in-network staffing model that saves hospitals millions annually.",
+    description: "Reduce expensive travel nurse reliance with a sustainable, in-network staffing model that brings labor costs down.",
   },
   {
     icon: Users,
@@ -38,12 +38,12 @@ const benefits = [
   {
     icon: Shield,
     title: "Data-Driven Strategy",
-    description: "We analyze 42 data points across your organization to build customized retention and staffing strategies that deliver ROI.",
+    description: "We analyze your organization's workforce data to build tailored retention and staffing strategies designed around your goals.",
   },
   {
     icon: Clock,
     title: "Real-Time Matching",
-    description: "Our AI-powered marketplace connects qualified nurses to open shifts in minutes, not days. Reducing downtime and overtime costs.",
+    description: "Our AI-powered marketplace connects qualified nurses to open shifts as soon as they're posted, reducing downtime and overtime costs.",
   },
   {
     icon: BarChart3,
@@ -54,12 +54,12 @@ const benefits = [
 
 const testimonials = [
   {
-    quote: "Seraphyn Care transformed our staffing model. We reduced agency spend by 40% in the first year while improving nurse satisfaction scores across the board.",
+    quote: "Seraphyn Care transformed our staffing model. We brought agency spend down meaningfully in the first year while improving nurse satisfaction scores across the board.",
     name: "Dr. Sarah Mitchell",
     role: "Chief Nursing Officer, Metro Health System",
   },
   {
-    quote: "The assessment alone was worth its weight in gold. It revealed inefficiencies we'd been blind to for years. The consulting engagement paid for itself in 90 days.",
+    quote: "The assessment alone was worth its weight in gold. It revealed inefficiencies we'd been blind to for years, and the consulting engagement quickly proved its value.",
     name: "James R. Thornton",
     role: "CEO, Pacific Coast Medical Center",
   },
@@ -201,7 +201,7 @@ const Index = () => (
         <motion.div {...fadeUp}>
           <h2 className="font-serif text-4xl md:text-5xl text-foreground">The End of the Staffing Crisis</h2>
           <p className="mt-6 text-muted-foreground max-w-[55ch] mx-auto leading-relaxed">
-            Discover how Seraphyn Care can save your organization millions while creating a workplace where nurses thrive.
+            Discover how Seraphyn Care can lower your labor costs while creating a workplace where nurses thrive.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
             <Link

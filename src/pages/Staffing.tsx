@@ -12,9 +12,9 @@ const fadeUp = {
 };
 
 const features = [
-  { icon: Zap, title: "Real-Time Matching", description: "Our AI pairs qualified nurses to open shifts instantly. Average time to fill: 14 minutes." },
+  { icon: Zap, title: "Real-Time Matching", description: "Our AI matches qualified nurses to open shifts based on skills, experience, and preferences — no phone trees, no delays." },
   { icon: Brain, title: "AI-Powered Profiles", description: "Intelligent profiles match experience, certifications, and preferences for optimal placement." },
-  { icon: DollarSign, title: "Reduced Agency Costs", description: "Cut travel nurse dependency by up to 60% with our in-network marketplace model." },
+  { icon: DollarSign, title: "Reduced Agency Costs", description: "Reduce reliance on costly travel nurses and premium agency staffing with our in-network marketplace model." },
   { icon: Clock, title: "Flexible Scheduling", description: "Nurses choose shifts that fit their lives. Hospitals fill gaps without overtime penalties." },
   { icon: Shield, title: "Verified Credentials", description: "Every nurse is credentialed, background-checked, and skills-verified before entering the network." },
   { icon: Users, title: "Dedicated Support", description: "Our team ensures seamless onboarding and ongoing support for both hospitals and nurses." },
@@ -51,7 +51,7 @@ const Staffing = () => (
           <div className="p-6 border-b border-border flex items-center gap-3">
             <div className="w-3 h-3 rounded-full bg-accent" />
             <span className="text-sm text-muted-foreground">Live Shift Dashboard</span>
-            <span className="ml-auto font-mono-tabular text-xs text-accent">Average time to fill: 14 min</span>
+            <span className="ml-auto font-mono-tabular text-xs text-accent">AI matching active</span>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-border">
             {[

@@ -75,12 +75,12 @@ const Consulting = () => (
       <div className="seraphyn-container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div>
-            <SectionHeading tag="MEASURABLE IMPACT" title="Consulting That Pays for Itself" center={false} />
+            <SectionHeading tag="MEASURABLE IMPACT" title="Measurable Outcomes, Not Promises" center={false} />
             <div className="space-y-6">
               {[
-                { metric: "14.2%", label: "Average reduction in annual turnover costs" },
-                { metric: "90 days", label: "Average time to positive ROI" },
-                { metric: "$4.2M", label: "Average annual savings per health system" },
+                { metric: "Lower", label: "Turnover, overtime, and premium agency costs" },
+                { metric: "Stronger", label: "Nurse retention and workforce stability" },
+                { metric: "Clearer", label: "Visibility into workforce ROI for your board" },
               ].map((item, i) => (
                 <motion.div key={i} {...fadeUp} transition={{ ...fadeUp.transition, delay: i * 0.1 }} className="flex items-baseline gap-4 pb-6 border-b border-border last:border-0">
                   <span className="font-mono-tabular text-2xl font-semibold text-accent">{item.metric}</span>
