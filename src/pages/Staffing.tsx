@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Layout from "@/components/Layout";
 import SectionHeading from "@/components/SectionHeading";
-import { Zap, Brain, DollarSign, Clock, Shield, Users } from "lucide-react";
+import { ArrowRight, Building2, Check, DollarSign, HeartHandshake, Stethoscope } from "lucide-react";
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
@@ -11,95 +11,123 @@ const fadeUp = {
   transition: { duration: 0.6, ease: [0.2, 0, 0, 1] as const },
 };
 
-const features = [
-  { icon: Zap, title: "Real-Time Matching", description: "Our AI matches qualified nurses to open shifts based on skills, experience, and preferences — no phone trees, no delays." },
-  { icon: Brain, title: "AI-Powered Profiles", description: "Intelligent profiles match experience, certifications, and preferences for optimal placement." },
-  { icon: DollarSign, title: "Reduced Agency Costs", description: "Reduce reliance on costly travel nurses and premium agency staffing with our in-network marketplace model." },
-  { icon: Clock, title: "Flexible Scheduling", description: "Nurses choose shifts that fit their lives. Hospitals fill gaps without overtime penalties." },
-  { icon: Shield, title: "Verified Credentials", description: "Every nurse is credentialed, background-checked, and skills-verified before entering the network." },
-  { icon: Users, title: "Dedicated Support", description: "Our team ensures seamless onboarding and ongoing support for both hospitals and nurses." },
+const primaryCta = "inline-flex items-center justify-center gap-2 px-7 py-4 bg-accent text-accent-foreground rounded-lg font-medium transition-all duration-200 hover:brightness-95 active:scale-95";
+const secondaryCta = "inline-flex items-center justify-center gap-2 px-7 py-4 bg-primary text-primary-foreground rounded-lg font-medium transition-all duration-200 hover:brightness-110 active:scale-95";
+
+const marketplaceRoles = [
+  {
+    icon: Stethoscope,
+    audience: "For Nurses",
+    points: ["Create a professional profile", "Choose your desired pay", "Set opportunity preferences and availability", "Be considered for relevant opportunities"],
+  },
+  {
+    icon: Building2,
+    audience: "For Hospitals",
+    points: ["Define your staffing needs", "Establish preferred staffing budgets", "Review qualified nurse profiles", "See the complete bill-rate calculation"],
+  },
+  {
+    icon: HeartHandshake,
+    audience: "For Seraphyn Care",
+    points: ["Connect nurses and healthcare organizations", "Provide marketplace technology", "Facilitate staffing administration", "Maintain transparent pricing"],
+  },
 ];
 
 const Staffing = () => (
   <Layout>
-    {/* Hero */}
     <section className="seraphyn-section seraphyn-gradient-bg">
-      <div className="seraphyn-container text-center py-16">
+      <div className="seraphyn-container py-12 text-center md:py-16">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: [0.2, 0, 0, 1] as const }}>
-          <h3 className="text-xs mb-4 text-muted-foreground">STAFFING MARKETPLACE</h3>
-          <h1 className="font-serif text-4xl md:text-6xl text-foreground">Intelligent Staffing, Delivered</h1>
-          <p className="mt-6 text-muted-foreground max-w-[55ch] mx-auto leading-relaxed text-lg">
-            A technology-driven marketplace that connects healthcare systems with qualified nurses in real time — reducing costs and improving care.
+          <p className="mb-4 text-xs font-medium uppercase tracking-[0.1em] text-accent">California staffing marketplace · first launch market</p>
+          <h1 className="mx-auto max-w-[18ch] text-4xl md:text-6xl">California First. Nurse-Powered. Transparent Staffing.</h1>
+          <p className="mx-auto mt-6 max-w-[60ch] text-lg leading-relaxed text-muted-foreground">
+            Seraphyn Care is launching its staffing marketplace in California, connecting qualified nurses with healthcare organizations while bringing greater transparency to staffing rates.
           </p>
-          <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/contact" className="px-8 py-4 bg-accent text-accent-foreground rounded-lg font-medium tracking-wide transition-all duration-200 hover:brightness-95 active:scale-95" style={{ boxShadow: "var(--shadow-button)" }}>
-              Post a Shift
+          <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
+            <Link to="/signup" className={primaryCta} style={{ boxShadow: "var(--shadow-button)" }}>
+              California Nurses: Join the Marketplace <ArrowRight size={16} />
             </Link>
-            <Link to="/for-nurses" className="px-8 py-4 bg-primary text-primary-foreground rounded-lg font-medium tracking-wide transition-all duration-200 hover:brightness-110 active:scale-95">
-              Browse Nurses
+            <Link to="/contact" className={secondaryCta}>
+              California Healthcare Organizations: Get Started
             </Link>
           </div>
         </motion.div>
       </div>
     </section>
 
-    {/* Live Dashboard Mockup */}
-    <section className="seraphyn-section">
+    <section className="seraphyn-section bg-card">
       <div className="seraphyn-container">
-        <SectionHeading tag="LIVE MATCHING" title="See It in Action" description="Our AI-powered dashboard matches nurses to shifts based on skills, location, availability, and preferences." />
-        <motion.div {...fadeUp} className="seraphyn-card p-0 overflow-hidden">
-          <div className="p-6 border-b border-border flex items-center gap-3">
-            <div className="w-3 h-3 rounded-full bg-accent" />
-            <span className="text-sm text-muted-foreground">Live Shift Dashboard</span>
-            <span className="ml-auto font-mono-tabular text-xs text-accent">AI matching active</span>
+        <SectionHeading
+          tag="TRANSPARENT PRICING"
+          title="See Exactly How the Staffing Rate Works"
+          description="Nurses express the compensation they desire. Hospitals decide which nurses and complete rates fit their staffing needs and budgets."
+        />
+        <motion.div {...fadeUp} className="mx-auto max-w-5xl rounded-lg border border-border bg-background p-6 md:p-10">
+          <div className="grid items-stretch gap-4 md:grid-cols-[1fr_auto_1fr_auto_1fr]">
+            <div className="rounded-lg border border-border bg-card p-6 text-center">
+              <p className="text-xs font-medium uppercase tracking-[0.1em] text-muted-foreground">Nurse compensation</p>
+              <p className="mt-3 font-mono-tabular text-4xl font-semibold text-foreground">$65<span className="text-lg">/hr</span></p>
+              <p className="mt-2 text-sm text-muted-foreground">Nurse's desired pay</p>
+            </div>
+            <span className="self-center text-center text-3xl text-accent">+</span>
+            <div className="rounded-lg border border-accent/40 bg-card p-6 text-center">
+              <p className="text-xs font-medium uppercase tracking-[0.1em] text-muted-foreground">Seraphyn Care agency fee</p>
+              <p className="mt-3 font-mono-tabular text-4xl font-semibold text-accent">$17<span className="text-lg">/hr</span></p>
+              <p className="mt-2 text-sm text-muted-foreground">Clearly disclosed</p>
+            </div>
+            <span className="self-center text-center text-3xl text-accent">=</span>
+            <div className="rounded-lg bg-primary p-6 text-center text-primary-foreground">
+              <p className="text-xs font-medium uppercase tracking-[0.1em] text-primary-foreground/70">Hospital bill rate</p>
+              <p className="mt-3 font-mono-tabular text-4xl font-semibold">$82<span className="text-lg">/hr</span></p>
+              <p className="mt-2 text-sm text-primary-foreground/70">Complete rate example</p>
+            </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-border">
-            {[
-              { unit: "ICU — Night Shift", time: "7p–7a", status: "Matched", nurse: "J. Williams, RN" },
-              { unit: "ER — Day Shift", time: "7a–7p", status: "Pending", nurse: "Matching..." },
-              { unit: "Med-Surg — Evening", time: "3p–11p", status: "Matched", nurse: "A. Chen, BSN" },
-            ].map((shift, i) => (
-              <div key={i} className="p-6">
-                <p className="text-sm font-medium text-foreground">{shift.unit}</p>
-                <p className="text-xs text-muted-foreground mt-1">{shift.time}</p>
-                <div className="mt-4 flex items-center justify-between">
-                  <span className={`text-xs px-2.5 py-1 rounded-full ${shift.status === "Matched" ? "bg-accent/10 text-accent" : "bg-muted text-muted-foreground"}`}>
-                    {shift.status}
-                  </span>
-                  <span className="text-xs text-muted-foreground">{shift.nurse}</span>
-                </div>
-              </div>
-            ))}
+          <div className="mt-8 flex gap-4 border-t border-border pt-7">
+            <DollarSign className="mt-0.5 shrink-0 text-accent" size={22} strokeWidth={1.5} />
+            <p className="text-sm leading-7 text-muted-foreground">
+              The $17/hour Seraphyn Care agency fee supports the operational infrastructure required to provide staffing services, including platform technology and maintenance, Human Resources functions, payroll administration, employer taxes and required filings, unemployment insurance, workers' compensation, and related staffing administration.
+            </p>
           </div>
         </motion.div>
       </div>
     </section>
 
-    {/* Features */}
     <section className="seraphyn-section seraphyn-gradient-bg">
       <div className="seraphyn-container">
-        <SectionHeading tag="PLATFORM FEATURES" title="Built for Modern Healthcare" />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {features.map((f, i) => (
-            <motion.div key={i} {...fadeUp} transition={{ ...fadeUp.transition, delay: i * 0.08 }} className="seraphyn-card">
-              <f.icon className="mb-5 text-accent" size={24} strokeWidth={1.5} />
-              <h3 className="text-sm mb-3">{f.title}</h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">{f.description}</p>
+        <SectionHeading tag="THE MARKETPLACE MODEL" title="A Different Approach to Staffing" description="Choice on both sides, supported by a transparent California nurse staffing marketplace." />
+        <div className="grid gap-6 lg:grid-cols-3">
+          {marketplaceRoles.map((role, index) => (
+            <motion.div key={role.audience} {...fadeUp} transition={{ ...fadeUp.transition, delay: index * 0.08 }} className="seraphyn-card">
+              <role.icon className="mb-5 text-accent" size={25} strokeWidth={1.5} />
+              <h3 className="mb-5 text-sm">{role.audience}</h3>
+              <ul className="space-y-3">
+                {role.points.map((point) => (
+                  <li key={point} className="flex gap-3 text-sm leading-relaxed text-muted-foreground">
+                    <Check className="mt-0.5 shrink-0 text-accent" size={16} /> {point}
+                  </li>
+                ))}
+              </ul>
             </motion.div>
           ))}
         </div>
+        <motion.p {...fadeUp} className="mx-auto mt-10 max-w-3xl text-center text-sm leading-7 text-muted-foreground">
+          Nurses choose the pay they desire. Hospitals choose the opportunities and rates that fit their staffing needs and budgets. A higher desired rate may result in fewer matching opportunities, while urgent needs may lead hospitals to consider nurses outside their preferred range.
+        </motion.p>
       </div>
     </section>
 
-    {/* CTA */}
-    <section className="seraphyn-section">
-      <div className="seraphyn-container text-center">
-        <motion.div {...fadeUp}>
-          <h2 className="font-serif text-4xl md:text-5xl text-foreground">Ready to Transform Your Staffing?</h2>
-          <p className="mt-6 text-muted-foreground max-w-[50ch] mx-auto">Start filling shifts faster while reducing costs. Our team will walk you through the platform.</p>
-          <Link to="/assessment" className="inline-block mt-10 px-8 py-4 bg-accent text-accent-foreground rounded-lg font-medium tracking-wide transition-all duration-200 hover:brightness-95 active:scale-95" style={{ boxShadow: "var(--shadow-button)" }}>
-            Get Started Today
-          </Link>
+    <section className="seraphyn-section bg-card">
+      <div className="seraphyn-container grid gap-8 lg:grid-cols-2">
+        <motion.div {...fadeUp} className="rounded-lg border border-border p-8 md:p-10">
+          <p className="mb-3 text-xs font-medium uppercase tracking-[0.1em] text-accent">For California nurses</p>
+          <h2 className="text-3xl md:text-4xl">Your Pay. Your Choice.</h2>
+          <p className="mt-5 leading-7 text-muted-foreground">Set your desired pay, create your professional profile, and position yourself for staffing opportunities that match your qualifications, preferences, availability, and rate.</p>
+          <Link to="/signup" className={`${primaryCta} mt-8`}>Join the California Nurse Marketplace <ArrowRight size={16} /></Link>
+        </motion.div>
+        <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.08 }} className="rounded-lg bg-primary p-8 text-primary-foreground md:p-10">
+          <p className="mb-3 text-xs font-medium uppercase tracking-[0.1em] text-primary-foreground/70">For California healthcare organizations</p>
+          <h2 className="text-3xl text-primary-foreground md:text-4xl">Transparent Staffing Starts Here.</h2>
+          <p className="mt-5 leading-7 text-primary-foreground/70">Tell us what you need, establish your staffing parameters, and review qualified nurses with transparent rate information.</p>
+          <Link to="/contact" className={`${primaryCta} mt-8`}>Explore Staffing Solutions <ArrowRight size={16} /></Link>
         </motion.div>
       </div>
     </section>
