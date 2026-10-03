@@ -77,7 +77,7 @@ const LegalDocument = ({ document, label, description }: LegalDocumentProps) => 
   flushList();
 
   useEffect(() => {
-    document.title = `${label} | Seraphyn Care`;
+    window.document.title = `${label} | Seraphyn Care`;
     const meta = window.document.querySelector('meta[name="description"]');
     const previousDescription = meta?.getAttribute("content");
     meta?.setAttribute("content", description);
