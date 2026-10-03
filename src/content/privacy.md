@@ -85,7 +85,7 @@ We use reasonable administrative, technical, and physical safeguards, including 
 - Receive a portable copy of your information.
 - Be free from discrimination for exercising your rights.
 
-Laws and rights vary by state, and some exceptions apply. [CONFIRM WHICH LAWS APPLY TO YOUR BUSINESS; SOME HAVE REVENUE OR VOLUME THRESHOLDS.]
+Laws and rights vary by state, and eligibility thresholds and exceptions may apply.
 
 **How to make a request.** Email info@seraphyncare.com or call (562) 270-0860. We may need to verify your identity, and you may use an authorized agent where the law allows. We aim to respond within the time your state's law requires.
 
