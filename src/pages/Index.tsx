@@ -42,8 +42,8 @@ const benefits = [
   },
   {
     icon: Clock,
-    title: "Real-Time Matching",
-    description: "Our AI-powered marketplace connects qualified nurses to open shifts as soon as they're posted, reducing downtime and overtime costs.",
+    title: "Transparent Matching",
+    description: "Our California-first marketplace is designed to connect qualified nurses and healthcare organizations with clearly disclosed rate information.",
   },
   {
     icon: BarChart3,
@@ -122,6 +122,17 @@ const Index = () => (
             Join as a Nurse
           </Link>
         </motion.div>
+      </div>
+    </section>
+
+    <section className="border-b border-border bg-primary px-6 py-10 text-primary-foreground">
+      <div className="seraphyn-container flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-center">
+        <div>
+          <p className="text-xs font-medium uppercase tracking-[0.1em] text-primary-foreground/70">California staffing marketplace · first launch market</p>
+          <h2 className="mt-2 text-3xl text-primary-foreground md:text-4xl">California First. Nurse-Powered. Transparent Staffing.</h2>
+          <p className="mt-3 max-w-3xl text-sm leading-6 text-primary-foreground/70">Nurses choose their desired pay. Hospitals choose the nurses and rates that fit their needs. Seraphyn Care adds a transparent $17/hour agency fee.</p>
+        </div>
+        <Link to="/staffing" className="shrink-0 rounded-lg bg-accent px-7 py-4 font-medium text-accent-foreground transition-all hover:brightness-95">Explore California Staffing</Link>
       </div>
     </section>
 
