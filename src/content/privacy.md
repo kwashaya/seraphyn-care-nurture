@@ -74,7 +74,7 @@ We use reasonable administrative, technical, and physical safeguards, including 
 
 ## 8. Your Privacy Rights and Choices
 
-**Everyone.** You may request access to, correction of, or deletion of your personal information, or opt out of marketing, by contacting us at info@seraphyncare.com or (562) 270-0860. You can also unsubscribe using the link in our emails.
+**Everyone.** You may request access to, correction of, or deletion of your personal information, or opt out of marketing, by contacting us at info@seraphyncare.com or (562) 350-4942. You can also unsubscribe using the link in our emails.
 
 **U.S. state residents.** If you live in California, Colorado, Connecticut, Delaware, Iowa, Maryland, Minnesota, Montana, Nebraska, New Hampshire, New Jersey, Oregon, Tennessee, Texas, Utah, Virginia, or another state with a comprehensive privacy law, you may have the right to:
 
@@ -87,7 +87,7 @@ We use reasonable administrative, technical, and physical safeguards, including 
 
 Laws and rights vary by state, and eligibility thresholds and exceptions may apply.
 
-**How to make a request.** Email info@seraphyncare.com or call (562) 270-0860. We may need to verify your identity, and you may use an authorized agent where the law allows. We aim to respond within the time your state's law requires.
+**How to make a request.** Email info@seraphyncare.com or call (562) 350-4942. We may need to verify your identity, and you may use an authorized agent where the law allows. We aim to respond within the time your state's law requires.
 
 **Appeals.** If we deny your request, you may appeal by replying to our decision or emailing info@seraphyncare.com with "Appeal" in the subject line. If your appeal is denied, you may contact your state attorney general.
 
@@ -116,5 +116,5 @@ Attention: Privacy Contact
 3400 Cottage Way, Ste G2 #34070
 Sacramento, CA 95825
 Email: info@seraphyncare.com
-Phone: (562) 270-0860
+Phone: (562) 350-4942
 Website: www.seraphyncare.com
