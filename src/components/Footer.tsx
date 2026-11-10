@@ -38,7 +38,7 @@ const Footer = () => (
           <h4 className="text-xs mb-4">Connect</h4>
           <div className="flex flex-col gap-3 text-sm text-muted-foreground">
             <span>info@seraphyncare.com</span>
-            <a href="tel:+15622700860" className="hover:text-foreground transition-colors">(562) 270-0860</a>
+            <a href="tel:+15623504942" className="hover:text-foreground transition-colors">(562) 350-4942</a>
           </div>
           <div className="flex gap-4 mt-4">
             <a href="https://www.facebook.com/seraphyncare" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-accent transition-colors"><Facebook size={20} /></a>
